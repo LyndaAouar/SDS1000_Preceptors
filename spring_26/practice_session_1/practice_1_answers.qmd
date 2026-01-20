@@ -1,5 +1,5 @@
 ---
-title: "Problem Session 1"
+title: "Practice Session 1 Answers"
 format: pdf
 editor: source
 editor_options: 
@@ -7,19 +7,20 @@ editor_options:
 ---
 
 # Part 1:  Quarto
-
-
-Quarto documents allow one to create reproducible analyses that include both
+  
+  
+  Quarto documents allow one to create reproducible analyses that include both
 written explanations as well as R code. We will use Quarto documents for all the
 class code and for the homework. For more information on Quarto see <https://quarto.org/>
-
-
+  
+  
 ### 1.1 Rendering Quarto documents
-
-
-We can render a Quarto document to a pdf document by pressing the **Render button** 
-which is located at the top of the Quarto file in RStudio (the button has an
-arrow symbol). This will generate a pdf that includes both content as well as
+  
+  
+  We can render a Quarto document to a pdf document by pressing the **Render button** 
+  which is located at the top of the Quarto file in RStudio (the button has an
+                                                             arrow symbol). 
+                                                             This will generate a pdf that includes both content as well as
 the output of any embedded R code chunks within the document.
 
 
@@ -28,6 +29,7 @@ document often so that you can tell right away when you make a mistake.
 Otherwise, it will be very difficulty to debug your code at the end when you try
 to submit the homework.
 
+$\\$
 
 ### 1.2 LaTeX symbols
 
@@ -43,26 +45,24 @@ write $\bar{y}$ to get a bar above it.
 
 
 **Exercises**: Try writing the following:
-
+  
 * x-bar subscript 20
-* y-bar subscript 12
+* Pi subscript 1
 * $\beta$-hat subscript 0
 
 
-
-
-
 **Answers:**
-
-* $\bar{x}_{20}$
-* $\bar{y}_{12}$
-* $\hat{\beta}_0$
-
+  
+  * $\bar{x}_{20}$
+  * $\pi_1$
+  * $\hat{\beta}_0$
+  
+$\\$
 
 # Part 2: Introduction to R
-
-
-Let's now discuss some of the basics of R!
+  
+  
+  Let's now discuss some of the basics of R!
 
 
 ### 2.1 Running R code
@@ -94,6 +94,7 @@ in the console.
 * `3.14 * 3^2 (28.26)`
 * `0.5 * 5 * 6 (15)`
 
+$\\$
 
 ### 2.2 Assigning values to objects
 
@@ -124,6 +125,15 @@ vegetable <- "carrot"
 **Exercises**: Assign the areas that you computed above to corresponding variables.
 You can name the variables based on the shape (e.g., square <- $\ldots$).
 
+Area of : 
+
+1. Square  : $A = s^2$
+
+2. Circle  : $A = \pi r^2$
+
+3. Triangle: $A = \frac{1}{2} b h$
+
+
 **Answers:**
 
 * square = 4 * 4
@@ -131,7 +141,7 @@ You can name the variables based on the shape (e.g., square <- $\ldots$).
 * triangle = 0.5 * 5 * 6
 
 
-
+$\\$
 
 
 ### 2.3 Functions
@@ -159,7 +169,7 @@ For example: ?round
 * ?toupper
 
 
-
+$\\$
 
 ### 2.4 Vectors
 
@@ -198,14 +208,13 @@ w
 * v_sqrt = sqrt(v)
 * round(v_sum - v_sqrt, 2)
 
+$\\$
 
 # Part 2: Quick review of categorical data analysis in R
 
 Let's quickly review how to analyze categorical data in R using a fictional
 dataset of voters' opinions of president Trump. 
 
-
-$\\$
 
 
 ### 2.1 Getting a simulated sample of voters
@@ -231,14 +240,14 @@ approval_sample <- get_approval_sample(1000)
 # Show the first 10 voters in the sample
 approval_sample [1:10]
 
-
-
 ```
 
 $\\$
+  
+### 2.2 Get the proportion:
 
-### 2.2 Get the proportion of voters that appropove of trump
-
+#### Example: Get the proportion of voters that appropove of trump
+  
 We can use the `table()` and `prop.table()` functions to create a frequency and
 relative frequency table of approval ratings.
 
@@ -250,23 +259,22 @@ of voters that approve of president Trump.
 
 # Create a table of the approval ratings
 approval_table <- table(approval_sample)
-
+approval_table
 
 # Create a relative frequency table of the approval ratings
 approval_proportions <- prop.table(approval_table)
-
+approval_proportions
 
 # Get the proportion that approves
 get_proportion(approval_sample, "approve")
 
-
 ```
 
 $\\$
-
+  
 ### 2.3 Bar plots and pie charts
-
-We can use the `barplot()` and `pie()` functions to visualize the data.
+  
+  We can use the `barplot()` and `pie()` functions to visualize the data.
 
 Note: Both functions take a frequency table as input, and **not** the original
 vector of data. 
@@ -285,8 +293,64 @@ pie(approval_table)
 
 
 Can you figure out how to change the color of the segments in the pie chart?
-
+  
 $\\$
 
+# Part 3:  Analyzing Quantitative Data 
 
-$\\$
+### Mean, Median, and histogram: 
+  
+  Generate histograms for each of the following data sets. Use the `$` command to access the individual data sets. 
+  
+  1. For each histogram, add the **mean**  and the **median** to the plot using `abline()`. 
+  
+  2. Describe the shape of the histogram, the position of the mean, and the position of median.
+  
+  3. Do you see any potential outliers? 
+  
+```{r}
+set.seed(999)
+
+mydata <- data.frame(
+  dat1 = -rchisq(1000, df = 1),
+  dat2 = rchisq(1000, df = 1),
+  dat3 = runif(1000),
+  dat4 = rnorm(1000),
+  dat5 = sample(c(rnorm(1000, mean = 2), rnorm(1000, mean = 10)), size = 1000)
+)
+
+
+```
+
+**Answers**: 
+
+```{r}
+
+mean1 <- mean (mydata$ dat1 )
+mean1
+
+median1 <-  median (mydata$ dat1 )
+median1
+
+hist1<- hist( mydata$ dat1,
+  
+     col = "pink1",                           # bins color   
+     main = "Histogram for mydata$dat1",      # title
+     xlab = "mydata$dat",                     # x-axis label
+     ylab = "Frequencies of mydata$dat",      # y-axis label
+     border = "darkgreen",                    # bins border thickness
+     lwd = 2,                                 # border thickness
+     cex.main = 2,                            # title size
+     cex.lab = 1.5,                           # axis labels size
+     cex.axis = 1.2,                          # tick labels size
+     font.main = 2,                           # bold title
+     font.lab = 3)                            # italic axis labels
+     
+
+abline(v= mean1, col="blue" )
+abline(v= median1, col="red2" )
+
+
+```
+
+
