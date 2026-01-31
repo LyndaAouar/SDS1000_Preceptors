@@ -1,0 +1,99 @@
+---
+title: "question for mini exam"
+format: pdf
+editor: visual
+---
+
+
+
+Public Expenditure on Education shows the public expenditure on education as percentage of Gross Domestic Product (GDP) for all countries.
+
+![](education.png){width=70%} 
+$\\$
+Data from Education Statistics (World Bank), May 2015. Most recent data available obtained from http://www.knoema.com).
+
+$\\$
+
+1. The mean expenditure is:
+
+a. $\pi= 4.8 \%$
+
+b. $\bar{x}= 4.8 \%$
+
+c. $\hat{p}= 4.8 \%$ 
+
+d. $\mu= 4.8 \%$
+
+**Answer**
+
+d. $\mu= 4.8 \%$
+
+$\\$
+
+
+2. The standard deviation of the expenditures is 
+
+a. $\ r= 4.8 \%$ 
+
+b. $\ s = 4.8 \%$
+
+c. $\sigma= 1.66 \%$
+
+d. $\rho= 4.8 \%$
+
+**Answer**
+
+c. $\sigma= 1.66 \%$
+
+$\\$
+
+3. Brazil spends $6.24 \%$ of its GDP on education. Without doing any calculations yet, will the $z$-score for Brazil be positive, negative, or zero? Why?
+ 
+a. Positive.
+
+b. Negative.
+
+c. Zero.
+
+d. None of the above.
+
+
+**Answer**
+
+a. Positive.
+
+$\\$
+
+4.  Calculate the $z$-score for Brazil.
+
+$\\$
+
+a.  0.95
+
+b. -0.87
+
+c. -0.95
+
+d.  0.87
+
+e. None of the above.
+
+**Answer**
+
+d.  0.87
+
+$\\$
+
+5. The five number summary for this data set is (1.46, 3.76, 4.87, 5.61, 12.46). Calculate the `IQR`.
+
+a. 11.0
+
+b. 4.87
+
+c. 1.85
+
+d. None of the above
+
+**Answer**
+
+c. 1.85
