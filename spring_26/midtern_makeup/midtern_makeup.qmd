@@ -1,0 +1,191 @@
+---
+title: "midterm_makup"
+format: pdf
+editor: visual
+---
+
+# Question 1: Number of Cell Phone Calls per Day
+
+Princeton Survey Research reports on a survey of 1,917 cell phone users in the US, conducted in May 2010, asking "On an average day, about how many phone calls do you make and receive on your cell phone?"
+
+a. What is the sample in this study?
+b. What is the population?
+c. Is the variable in this study quantitative or categorical?
+
+**Answer**
+
+a. The 1,917 people who were asked the question.
+b. All cell phone users in the US
+c. Quantitative
+
+$\\$
+
+# Question 2: Driving with a Pet on your Lap
+
+Over 30,000 people participated in an online poll on cnn.com conducted in April 2012 asking "Have you ever driven with a pet on your lap?" We see that $34 \%$ of the participants answered yes and $66 \%$ answered no.
+
+a. What is the sample?
+
+b. Can we conclude that $34 \%$ of all drivers have driven with a pet on their lap?
+
+c. Explain why it is not appropriate to generalize these results to all drivers, or even to all drivers who visit cnn.com. What is the problem with this method of data collection?
+
+d. How might we select a sample of people that would give us results that we can generalize to a broader population?
+
+e. Is the variable in this study quantitative or categorical?
+
+**Answer**
+
+a. The 30,000 people who participated in the poll.
+
+b. No! This is a volunteer sample, and volunteer samples are usually biased. It is likely that people who have driven with a pet on their lap are more likely to respond to the poll.
+
+c. Volunteer samples are generally biased since people who feel strongly about the subject are much more likely to participate.
+
+d. Use a `Random Sample !`
+
+e. Categorical
+
+$\\$
+
+
+# Question 3: Comparing Global Internet Connections
+
+
+The table shows data on average internet download speeds in nine different countries in order to determine whether internet speed is related to the amount of time users spend online.
+
+![](internet.png){width=60%} 
+![](internet scatterplot.png){width=60%} 
+a. What would a positive association mean between these two variables? Explain why a positive relationship might make sense in this context.
+
+b. What would a negative association mean between these two variables? Explain why a negative relationship might make sense in this context.
+
+c. Make a scatterplot of the data, using internet speed as the explanatory variable and time online as the response variable. 
+
+d. Is there a positive or negative relationship? Are there any outliers? If so, indicate the country associated with each outlier and describe the characteristics that make it an outlier for the scatterplot.
+
+e. If we eliminate any outliers from the scatterplot, does it appear that the remaining countries have a positive or negative relationship between these two variables?
+
+f. For all nine countries, the correlation is r = −0.704. If we leave out the outliers, the correlation for the remaining eight countries changes to r = −0.289.
+What could you call those outliers? Why? 
+
+g. Can we conclude that a slower connection speed causes people to spend more time online?
+
+**Answer**
+
+a. A positive relationship implies that as internet speed goes up, time online goes up. This might make sense because being online is more enjoyable with a fast internet speed, so people may spend more time online.
+
+
+b. A negative relationship implies that as internet speed goes up, time online goes down. This might make sense because if internet speed is fast, people can accomplish what they need to accomplish online in a shorter amount of time so they spend less time online waiting.
+
+c. See the scatterplot below. These two variables have a negative association. There is one clear outlier. The point in the top left corner, corresponding to Brazil, has much lower internet speed and high number of hours online.
+
+d. If we ignore the outlier for Brazil, there is still a bit of a negative association, but the variables do not appear to have a strong relationship in either direction.
+
+e. If we eliminate any outliers from the scatterplot,  the remaining countries have a  negative relationship between these two variables, 
+
+f. For all nine countries, the correlation is $r=-0.704$. If we leave out Brazil, the correlation for the remaining eight countries changes to $r=-0.289$. The data point for Brazil appears to have strong influence on the correlation, we call it ` influencial data point`.
+
+g. No! Even with a negative correlation, these data comes from an observational study, so we cannot conclude that there is a causal association.
+
+$\\$
+
+```{r}
+library(Lock5Data)
+data(HollywoodMovies)
+```
+
+
+
+# Question 4: Predicting World Gross Revenue for a Movie from Its Opening Weekend 
+
+The data in `HollywoodMovies` shows revenue from a movie's opening weekend (OpeningWeekend) to predict total world gross revenues by the end of the year (WorldGross). Both variables are in millions of dollars.
+
+![](movies.png){width=70%} 
+
+a.Describe the scatterplot: Is there a linear trend? How strong is it? Is it positive or negative? Does it look as if revenue from a movie's opening weekend is a good predictor of its future total earnings?
+
+
+b. Write the regression line if the `slope` was $7.5$ and `intercept` was $15.4$ the in regression line.
+
+c. Use the regression line to predict world gross revenues for a movie that makes 50 million dollars in its opening weekend.
+
+**Answer**
+
+a. It seems there is a linear trend
+
+b. $\hat{WorldGross}$ = $ 15.4 + 7.5 \cdot OpeningWeekend$
+
+c. 390.4 million dollars
+
+
+
+# Question 5: Parameters and Statistics
+
+For each of the following, state whether the quantity described is a parameter or a statistic, and give the correct notation.
+
+a. The proportion of all residents in a country who voted in the last presidential election.
+
+b.The mean number of extracurricular activities from a random sample of 50 students at your school.
+
+c. The mean grade assigned for all grades given out to undergraduates at your school.
+
+d. The difference in proportion who have ever smoked cigarettes, between a sample of 500 people who are 60 years old and a sample of 200 people who are 25 years old.
+
+**Answers:**
+
+a. This is a parameter since we have information on all the residents, and the notation is $p$.
+
+b. This is a statistic since the mean is from a sample, and the notation is $\bar{x}$.
+
+c. This is a parameter since the mean is for all grades, and the notation is $\mu$.
+
+d. We use statistics since the proportions are from samples. The notation for the difference in sample proportions is $\hat{p}_1-\hat{p}_2$.
+
+
+# Question 6:  Rats with Compassion 
+
+In a recent study,50 rats showed compassion that surprised scientists. Twenty-three of the 30 rats in the study freed another trapped rat in their cage, even when chocolate served as a distraction and even when the rats would then have to share the chocolate with their freed companion. (Rats, it turns out, love chocolate.) Rats did not open the cage when it was empty or when there was a stuffed animal inside, only when a fellow rat was trapped. We wish to use the sample to estimate the proportion of rats that would show empathy in this way. 
+
+The data are available in the dataset `CompassionateRats`.
+
+```{r}
+library(Lock5Data)
+data(CompassionateRats)
+```
+
+a. Give the relevant parameter and its best estimate.
+
+b. Describe how to use 30 slips of paper to create one bootstrap statistic. Be specific.
+
+c. Describe the bootstrap distribution. Describe the shape and center of the bootstrap distribution. What is the standard error?
+
+![](rats.png){width=70%} 
+
+d. Use the standard error to find and interpret a 95% confidence interval for the proportion of rats likely to show empathy.
+
+
+
+**Answers:**
+
+a. The best point estimate for the proportion, $p$, of rats showing empathy is $\widehat{p}=23 / 30=0.767$.
+
+b. On 23 of the slips, we write "yes" (showed empathy) and on the other 7 , we write "no". We then mix up the slips of paper, draw one out and record the result, yes or no. Put the slip of paper back and repeat the process 30 times. This set of yes's and no's is our bootstrap sample. The proportion of yes's in the sample is our bootstrap statistic.
+
+c. Using technology, we see that the bootstrap distribution is bell-shaped and centered approximately at 0.767 . We also see that the standard error is about 0.077 .
+
+
+d. We have
+
+$$
+\begin{aligned}
+& \widehat{p} \pm 2 \cdot S E \\
+& 0.767 \pm 2(0.077) \\
+& 0.767 \pm 0.154 \\
+& 0.613 \text { to } \\
+& 0.0 .921
+\end{aligned}
+$$
+
+
+For all laboratory rats, we are $95 \%$ confident that the proportion of rats that will show empathy in this manner is between $61.3 \%$ and $92.1 \%$.
