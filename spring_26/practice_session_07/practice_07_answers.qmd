@@ -24,10 +24,11 @@ data(ExerciseHours)
 ```
 
 
-1.a  Write the `null hypothesis`  and `alternative hypothesis`  in words and in symbols.
+1.a  Write the `null hypothesis`  and `alternative hypothesis` 
 
 $\ H_0:\mu_{f}= \mu_{m}$   vs    $\ H_a: \mu_{f} < \mu_{m}$
 
+&nbsp;
 
 1.b Create a boxplot to describe hours of exercise for `female` versus `male`.
 
@@ -52,7 +53,6 @@ length(excercise_mal)
 ## 20
 ```
 
-
 2. Compute the observed statistic (mean difference of exercise hours for Female and Male).
 
 ```{r}
@@ -63,13 +63,14 @@ obs_stat
 ```
 
 
+
 3. Create null hypothesis distribution
 
-3.a Shuffle the two groups of `female` and `Male` into two samples, and find the mean difference of the two shuffled samples.
-
+3.a  Shuffle the two groups of `female` and `Male` into two samples, and find the mean difference of the two shuffled samples.
 ```{r}
+
 combined_sample <- c(excercise_fem, excercise_mal)
-shuffled_sample <- sample(combined_sample )
+shuffled_sample <- shuffle(combined_sample )
 
 shuff_fem <- shuffled_sample[1:30]
 shuff_mal <- shuffled_sample[31:50]
@@ -79,10 +80,10 @@ shuff_stat
 # answers may vary
 ```
 
-3.b Create the Null hypothesis Distribution  
+3.b Create the Null hypothesis Distribution using the function do_it()
 
 ```{r}
-
+ 
 null_dist <- do_it(10000) * {
 shuffled_sample <- shuffle(combined_sample )
 
@@ -136,7 +137,7 @@ data(BaseballHits2019)
 
 **Answers:**
 
-1.a Write the `null hypothesis`  and `alternative hypothesis`  in words and in symbols.
+1. Write the `null hypothesis`  and `alternative hypothesis`  in words and in symbols.
 
 * Null: There is no linear association between home runs and wins
 * Alternative: There is a positive, linear association between home runs and wins
@@ -224,10 +225,7 @@ data(TextbookCosts)
 * Null: There is no difference in average textbook costs among subjects
 * Alternative: There is a difference in average textbook costs among subjects
 
-**Null Hypothesis:** the vaccines cause the same amount of antibodies to be produced 
-
-**Alternative Hypothesis:** At least one of the vaccines causes a different amount of antibodies to be produced 
-
+&nbsp;
 
 **In symbols**
 
@@ -260,7 +258,6 @@ null_dist <- do_it(10000) * {
 
 }
 ```
-
 
 
 
