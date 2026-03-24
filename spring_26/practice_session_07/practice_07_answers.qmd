@@ -11,8 +11,6 @@ editor_options:
 The focus of this practice session will be to perform hypothesis tests for the difference of two or more means. We will look at various test statistics that can be used. We will also conduct hypothesis testing for correlations.
 
 
-
-
 ## Question 1: Exercise Hours Hypothesis Test  for the difference of two means
 
 
@@ -98,19 +96,16 @@ b. Subset the data `ExerciseHours` to two groups: `F` and `M` .
 
 
 ```{r}
-# Method 1
 
-excercise_fem <- excersicehours[excersicehours$sex == "female", ]
-excercise_mal  <- excersicehours[excersicehours$sex == "male", ]
 
-# Method 2, we will use the function `subset`
-
-# excercise_fem <- subset(  ExerciseHours$Exercise, ExerciseHours$Sex == "F")
-# excercise_mal <- subset(  ExerciseHours$Exercise, ExerciseHours$Sex == "M")
+excercise_fem <- ExerciseHours$Exercise[ExerciseHours$Sex == "F"]
+excercise_mal <- ExerciseHours$Exercise[ExerciseHours$Sex == "M"]
 
 
 length(excercise_fem)
 length(excercise_mal)
+
+
 ## 30
 ## 20
 ```
@@ -147,7 +142,7 @@ b. Create the Null hypothesis Distribution
 ```{r}
 
 null_dist <- do_it(10000) * {
-shuffled_sample <- sample(combined_sample )
+shuffled_sample <- shuffle(combined_sample )
 
 shuff_fem <- shuffled_sample[1:30]
 shuff_mal <- shuffled_sample[31:50]
@@ -159,7 +154,8 @@ shuff_stat <- mean(shuff_fem) - mean(shuff_mal)
 c. Plot histogram of the null distribution and show the line of the observed mean difference
 
 ```{r}
-hist(null_dist , xlab = "Difference in means of Exercise hous bewteen Female and Male", main = "Null distribution")
+hist(null_dist ,
+     xlab = "Difference in means of Exercise hous bewteen Female and Male",       main = "Null distribution")
 
 abline(v = obs_stat, col = "blue")
 ```
@@ -180,7 +176,6 @@ p_value
 We fail to reject the **null hypothesis**. There are no enough evidence to conclude that there is  a mean difference in Exercise Hours between Female and Male.
 
 $\\$
-
 
 
 
@@ -232,7 +227,7 @@ runs_wins_corr
 
 ```{r}
 null_dist <- do_it(10000) * {
-  shuffled_sample <- sample(combined_sample)
+  shuffled_sample <- shuffle(combined_sample)
 
   shuff_hr <- shuffled_sample[1:30]
   shuff_wins <- shuffled_sample[31:60]
@@ -321,7 +316,7 @@ a. Create null hypothesis distribution
 
 null_dist <- do_it(10000) * {
 
-  shuffled_Field <- sample(TextbookCosts$Field )
+  shuffled_Field <- shuffle(TextbookCosts$Field )
 
   get_MAD_stat(TextbookCosts$Cost, shuffled_Field)
 
@@ -355,6 +350,8 @@ Since our p-value is less than 0.05, we will reject the null hypothesis. We ther
 
 $\\$
 
+
+
 # Extra practices: 
 
 ## Question 4: Caffeine Taps Hypothesis Test for the difference of two means
@@ -369,7 +366,7 @@ data(CaffeineTaps)
 
 ```
 
-1. Write the `null hypothesis`  and `alternative hypothesis`  in words and in symbols.
+1.a  Write the `null hypothesis`  and `alternative hypothesis`  in words and in symbols.
 
 * Null: There is no difference in the average taping rate between the caffeinated and decaffeinated groups 
 
@@ -381,36 +378,32 @@ data(CaffeineTaps)
 * $H_A: \mu_{c} - \mu_{nc} \neq 0$
 
 
-2. Create a boxplot to describe tap rates for `Caffeine` versus `No Caffeine`.
+1.b Create a boxplot to describe tap rates for `Caffeine` versus `No Caffeine`.
 
 ```{r}
 
 boxplot(data = CaffeineTaps, Taps ~ Group)
 ```
 
-3. Find some favorite statistics to visualize the number of taps for the `Caffeine` and `No Caffeine` group.
+
+1.c Subset the data `CaffeineTaps` to two groups: `Caffeine` and `NoCaffeine`.
 
 ```{r}
-mosaic::favstats(Taps ~ Group, data = CaffeineTaps)
-```
- 
- 
-4. Subset the data `CaffeineTaps` to two groups: `Caffeine` and `NoCaffeine`.
 
-```{r}
-Caffeine = subset(CaffeineTaps$Taps, CaffeineTaps$Group == "Caffeine")
-NoCaffeine = subset(CaffeineTaps$Taps, CaffeineTaps$Group == "NoCaffeine")
+Caffeine <- CaffeineTaps$Taps[CaffeineTaps$Group == "Caffeine"]
+NoCaffeine <- CaffeineTaps$Taps[CaffeineTaps$Group == "NoCaffeine"]
+
 ```
 
 
-5. Compute the observed statistic (mean difference of tap number for the two groups).
+2. Compute the observed statistic (mean difference of tap number for the two groups).
 
 ```{r}
 diff_caffeine = mean(Caffeine) - mean(NoCaffeine)
 ```
 
 
-6. Create null hypothesis distribution
+3. Create null hypothesis distribution
 
 a. Shuffle the two groups of `Caffeine` and `No Caffeine` into two samples, and find the mean difference of the two shuffled samples.
 
@@ -422,7 +415,7 @@ b. Create the Null hypothesis Distribution using `do_it()` function.
 
 ```{r}
 null_dist <- do_it(10000) * {
-  shuffled_sample <- sample(combined_sample)
+  shuffled_sample <- shuffle(combined_sample)
 
   shuff_caff <- shuffled_sample[1:10]
   shuff_nocaff <- shuffled_sample[11:20]
@@ -440,7 +433,7 @@ abline(v = diff_caffeine, col = "blue")
 ```
 
 
-7. Calculate p-value 
+4. Calculate p-value 
 
 ```{r}
 p_value_upper <- pnull(diff_caffeine, null_dist, lower.tail = F) 
@@ -450,7 +443,7 @@ p_value <- p_value_upper + p_value_lower
 p_value
 ```
 
-8. Make a decision and state your conclusion:
+5. Make a decision and state your conclusion:
 
 Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that drinking caffeinated coffee produces an increase in the average tap rate compared to those that drink decaffeinated coffee.
 
@@ -496,7 +489,7 @@ obs_stat
 null_dist <- do_it(10000) * {
 
   # shuffle the completion times
-  shuffled_Vaccine <- sample(my_data$Vaccine )
+  shuffled_Vaccine <- shuffle(my_data$Vaccine )
 
   # calculate the simulated statistic
   get_MAD_stat(my_data$Antibodies, shuffled_Vaccine)
