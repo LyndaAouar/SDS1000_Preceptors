@@ -1,5 +1,3 @@
-
-
 ---
 title: "Practice Session 9_answers"
 format: pdf
@@ -9,53 +7,189 @@ editor_options:
 ---
 
 
-# Question 1: Type I, Type II, or Neither?
+# Introduction : 
 
-a) Type I Error
+The **Central Limit Theorem** for Sample Means indicate that if the sample size $n$ is large, the distribution of sample means from a population with mean $\mu$ and standard deviation $\sigma$ is approximately normally distributed with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$.
 
-b) No error
 
-c) 
+Unfortunately, we find **two difficulties** when trying to use this result in practice. **First**, we generally don't know the standard deviation $\sigma$, so we can just use the standard deviation from the sample, $s$, when estimating the standard error of the sample means.
 
-* No error
-* Type I Error
-* Type II Error
-* No error
+$$
+SE=\frac{s}{\sqrt{n}}
+$$
+**The second** difficulty  is that when we use the  $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with ** degrees of freedom**, df= n-1. 
 
-**If the disease is dangerous, then a Type II error (saying a patient doesn't have the disease when they really do) can be a big issue. We would want to make the Type II error lower. However, this may make the Type I error larger as a result.**
 
-# Question 2: Single Sample T Test
 
-a)
+## 1. Single Mean
+
+Let $\bar{x}$ and $s$ be the sample mean and standard deviation, respectively. $t^*$ is an endpoint chosen from a t-distribution with $df=n-1$. And if the distribution of the population is approximately normal or the sample size is large.
+
+
+* **CI for a One Mean**
+
+The confidence interval for the population mean, $\mu$, is
+
+
+$$
+\bar{x} \pm t^* \cdot \frac{s}{\sqrt{n}}
+$$
+
+
+* **HT for a One Mean: T- Test**
+
+To test $H_{\mathrm{O}}: \mu=\mu_{\mathrm{O}}$ vs $H_a: \mu \neq \mu_{\mathrm{O}}$ (or a one-tail alternative) use the t -test statistic as follows: 
+
+$$
+t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\bar{x}-\mu_0}{s / \sqrt{n}}
+$$
+
+where  the p -value of the test is computed using the appropriate tail(s) of a t -distribution with $n-1$ degrees of freedom.
+
+
+
+
+
+# 2. Difference in Means
+
+Consider two population approximately normally distributed or the two sample sizes are large. Where $\bar{x}_1$ and $\bar{x}_2$ are the means, $s_1$ and $s_2$ are the standard deviations, and the samples of sizes $n_1$ and $n_2$ respectively. 
+
+
+ * **CI for a Difference in Means**
+ 
+The confidence interval for the difference in two population means, $\mu_1-\mu_2$, is
+
+$$
+\left(\bar{x}_1-\bar{x}_2\right) \pm t^* \cdot \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}
+$$
+
+where **$t^*$** is an endpoint chosen from a t-distribution with df = min ( $n_1-1$, $n_2-1$ ) .
+
+
+
+
+
+
+* **HT Two-Sample t-Test for a Difference in Means**
+
+To test $H_{\mathrm{O}}: \mu_1=\mu_2$ vs $H_a: \mu_1 \neq \mu_2$ (or one-tail test), we use two-sample t -statistic: 
+
+$$
+t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\left(\bar{x}_1-\bar{x}_2\right)-0}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
+$$
+we use a t -distribution to find the p -value  with df = min ( $n_1-1$, $n_2-1$ ). 
+
+
+
+# 3. Inference for a Difference in Means with **Paired Data**
+
+* **CI for Difference in Means with Paired Data** 
+
+To estimate the difference in means based on paired data, we first subtract to compute the difference for each data pair and compute the mean $\bar{x}_d$, the standard deviation $s_d$, and the sample size $n_d$ for the sample differences.Provided the differences are reasonably normally distributed (or the sample size is large).
+
+The  confidence interval for the difference in means is given by:
+
+$$
+\text { Statistic } \pm t^* \cdot S E=\bar{x}_d \pm t^* \frac{s_d}{\sqrt{n_d}}
+$$
+
+where $t^*$ is a percentile from a t -distribution with $n_d-1$ degrees of freedom.
+
+
+* **HT for Difference in Means with Paired Data** 
+
+To test $H_{\mathrm{o}}: \mu_d=\mathrm{o}$ vs $H_a: \mu_d \neq \mathrm{o}$ (or one-tail test) we use the t-test statistic:
+
+$$
+t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\bar{x}_d-0}{s_d / \sqrt{n_d}}
+$$
+
+
+If the differences are reasonably normally distributed (or the sample size is large), we use a t-distribution with $n_d-\mathbf{1}$ degrees of freedom to compute a p -value for this test statistic.
+
+
+
+
+
+
+
+
+
+## Exercise2: Single Sample T-Test
+
+
+
+According to a local statistics instructor, the average score on his first exam of the semester (`Exam1`) is historically around 80%. The data is available in the `StatsGrades` from the `Lock5Data` library. Run a one sample t-test to see if this year's students performed significantly better than the historic average.
 
 ```{r}
+library(SDS1000)
 library(Lock5Data)
-par(mfrow = c(1, 2))
-boxplot(StatGrades$Exam1, main = "", ylab = "Exam 1 Scores")
-hist(StatGrades$Exam1, main = "", xlab = "Exam 1 Scores")
+data(StatGrades)
 ```
 
-**There appears to be one outlier. We might want to investigate this score further.**
 
-b)
+f.  Use the `dt()` function and `plot()` to visualize the t-distribution. The degrees of freedom will be the same as for the test. Add a vertical red line to the plot at the observed sample mean.
+
+
+
+
+a. First visualize the data using a boxplot and a histogram. Do you see any outliers?
+
+```{r}
+par(mfrow = c(1, 2))
+
+  exam1 <- StatGrades$Exam1
+
+boxplot(exam1,
+        main= " boxplt of Exam 1",
+        ylab = "Exam 1 Scores")
+
+hist(exam1, xlab = "Exam 1 Scores")
+```
+
+There appears to be one outlier. We might want to investigate this score further.
+
+b. State the null and alternative hypotheses using symbols.
 
 * $H_0: \mu = 80$
 * $H_A: \mu \neq 80$
 
-c)
+
+
+c. Calculate the sample statistic.
 
 ```{r}
-n1 = length(StatGrades$Exam1) # get sample size (n = 50)
 
-mean_exam1 = mean(StatGrades$Exam1) # compute sample mean
-sd_exam1 = sd(StatGrades$Exam1)
-se_exam1 = sd_exam1 / sqrt(n1) # compute standard error
+n1 <- length(exam1) # get sample size (n = 50)
 
-T_stat_exam1 = (mean_exam1 - 80) / se_exam1
-T_stat_exam1
+# compute sample mean
+
+mean_exam1 <-  mean(exam1) 
+
 ```
 
-d)
+
+
+d. Calculate the t-test statistic
+
+```{r}
+
+# first compute standard error
+
+sd_exam1 <-  sd(StatGrades$Exam1)
+se_exam1 <-  sd_exam1 / sqrt(n1) 
+
+# t-test statistic
+
+t_stat_exam1 <- (mean_exam1 - 80) / se_exam1
+t_stat_exam1
+
+
+```
+
+
+e. Calculate the p-value of the test, and state your conclusion.
+
 
 ```{r}
 # df = 50 - 1 = 49
