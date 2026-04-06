@@ -1,5 +1,5 @@
 ---
-title: "Practice Session 9_answers"
+title: "Practice Session 9 Answers"
 format: pdf
 editor: source
 editor_options: 
@@ -7,7 +7,7 @@ editor_options:
 ---
 
 
-# Introduction : 
+# Introduction 
 
 The **Central Limit Theorem** for Sample Means indicate that if the sample size $n$ is large, the distribution of sample means from a population with mean $\mu$ and standard deviation $\sigma$ is approximately normally distributed with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$.
 
@@ -17,9 +17,9 @@ Unfortunately, we find **two difficulties** when trying to use this result in pr
 $$
 SE=\frac{s}{\sqrt{n}}
 $$
-**The second** difficulty  is that when we use the  $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with ** degrees of freedom**, df= n-1. 
+** The Second** difficulty  is that when we use the   $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with **degrees of freedom**, df= n-1. 
 
-
+$\\$
 
 ## 1. Single Mean
 
@@ -30,7 +30,6 @@ Let $\bar{x}$ and $s$ be the sample mean and standard deviation, respectively. $
 
 The confidence interval for the population mean, $\mu$, is
 
-
 $$
 \bar{x} \pm t^* \cdot \frac{s}{\sqrt{n}}
 $$
@@ -38,7 +37,7 @@ $$
 
 * **HT for a One Mean: T- Test**
 
-To test $H_{\mathrm{O}}: \mu=\mu_{\mathrm{O}}$ vs $H_a: \mu \neq \mu_{\mathrm{O}}$ (or a one-tail alternative) use the t -test statistic as follows: 
+To test $H_{\mathrm{0}}: \mu=\mu_{\mathrm{0}}$ vs $H_a: \mu \neq \mu_{\mathrm{0}}$ (or a one-tail alternative) use the t -test statistic as follows: 
 
 $$
 t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\bar{x}-\mu_0}{s / \sqrt{n}}
@@ -47,15 +46,16 @@ $$
 where  the p -value of the test is computed using the appropriate tail(s) of a t -distribution with $n-1$ degrees of freedom.
 
 
+$\\$
 
 
-
-# 2. Difference in Means
+# 2. Inference for Difference in Two Means
 
 Consider two population approximately normally distributed or the two sample sizes are large. Where $\bar{x}_1$ and $\bar{x}_2$ are the means, $s_1$ and $s_2$ are the standard deviations, and the samples of sizes $n_1$ and $n_2$ respectively. 
 
 
- * **CI for a Difference in Means**
+
+ * **CI for Difference in Two Means**
  
 The confidence interval for the difference in two population means, $\mu_1-\mu_2$, is
 
@@ -68,9 +68,7 @@ where **$t^*$** is an endpoint chosen from a t-distribution with df = min ( $n_1
 
 
 
-
-
-* **HT Two-Sample t-Test for a Difference in Means**
+* **HT for Difference in Two  Means (Two-Sample t-Test )**
 
 To test $H_{\mathrm{O}}: \mu_1=\mu_2$ vs $H_a: \mu_1 \neq \mu_2$ (or one-tail test), we use two-sample t -statistic: 
 
@@ -81,7 +79,10 @@ we use a t -distribution to find the p -value  with df = min ( $n_1-1$, $n_2-1$ 
 
 
 
-# 3. Inference for a Difference in Means with **Paired Data**
+$\\$
+
+
+# 3. Inference for  Difference in Means with **Paired Data**
 
 * **CI for Difference in Means with Paired Data** 
 
@@ -109,17 +110,16 @@ If the differences are reasonably normally distributed (or the sample size is la
 
 
 
+$\\$
 
 
 
+## Exercise 1: Single Sample T-Test
 
 
+According to a local statistics instructor, the average score on his first exam of the semester (`Exam1`) is historically around 80%. The data is available in the `StatsGrades` from the `Lock5Data` library. 
 
-## Exercise2: Single Sample T-Test
-
-
-
-According to a local statistics instructor, the average score on his first exam of the semester (`Exam1`) is historically around 80%. The data is available in the `StatsGrades` from the `Lock5Data` library. Run a one sample t-test to see if this year's students performed significantly better than the historic average.
+Run a `one sample t-test` to see if this year's students performed significantly better than the historic average.
 
 ```{r}
 library(SDS1000)
@@ -128,17 +128,12 @@ data(StatGrades)
 ```
 
 
-f.  Use the `dt()` function and `plot()` to visualize the t-distribution. The degrees of freedom will be the same as for the test. Add a vertical red line to the plot at the observed sample mean.
-
-
-
 
 a. First visualize the data using a boxplot and a histogram. Do you see any outliers?
 
 ```{r}
 par(mfrow = c(1, 2))
-
-  exam1 <- StatGrades$Exam1
+exam1 <- StatGrades$Exam1
 
 boxplot(exam1,
         main= " boxplt of Exam 1",
@@ -149,6 +144,9 @@ hist(exam1, xlab = "Exam 1 Scores")
 
 There appears to be one outlier. We might want to investigate this score further.
 
+
+
+
 b. State the null and alternative hypotheses using symbols.
 
 * $H_0: \mu = 80$
@@ -156,426 +154,356 @@ b. State the null and alternative hypotheses using symbols.
 
 
 
+
 c. Calculate the sample statistic.
 
 ```{r}
 
-n1 <- length(exam1) # get sample size (n = 50)
-
 # compute sample mean
-
 mean_exam1 <-  mean(exam1) 
 
 ```
 
 
 
+
 d. Calculate the t-test statistic
 
 ```{r}
-
 # first compute standard error
 
-sd_exam1 <-  sd(StatGrades$Exam1)
+# get sample size (n = 50)
+n1 <- length(exam1) 
+
+# sd of the exam1 
+sd_exam1 <-  sd(exam1) 
 se_exam1 <-  sd_exam1 / sqrt(n1) 
 
 # t-test statistic
-
 t_stat_exam1 <- (mean_exam1 - 80) / se_exam1
 t_stat_exam1
 
-
 ```
 
 
-e. Calculate the p-value of the test, and state your conclusion.
 
+
+e. Calculate the p-value of the test 
 
 ```{r}
 # df = 50 - 1 = 49
-pt(T_stat_exam1, df = n1 - 1, lower.tail = F)
+pt(t_stat_exam1, df = n1 - 1, lower.tail = F)
 ```
 
-**Since our p-value is greater than 0.05, we will fail to reject the null hypothesis. We therefore do not have evidence that this year's exam scores are significantly higher than 80.**
 
-e)
+
+f. State your conclusion.
+
+Since our p-value is greater than 0.05, we will **fail to reject** the null hypothesis. We therefore do not have evidence that student's exam scores are significantly higher than 80.
+
+
+
+
+
+g.  Use the `dt()` function and `plot()` to visualize the t-distribution. The degrees of freedom will be the same as for the test. Add a vertical red line to the plot at the observed sample mean.
 
 ```{r}
 # Create sequence of t-values
-t_values = seq(-4, 4, length.out = 1000)
-dt_values = dt(t_values, df = 49) # convert to density values
+t_values <-  seq(-4,4, length.out = 1000)
+dt_values <-  dt(t_values, df = 49) # convert to density values
 
 # plot and make line plot with type = "l"
 plot(t_values, dt_values, type = "l") 
-abline(v = T_stat_exam1, col = "red") # add vertical red line
+abline(v = t_stat_exam1, col = "blue") # add vertical red line
 ```
 
-**It seems that the sample mean wasn't very far from the null value of 80, which supports the lack of significance in our test.**
-
-# Question 3: Two Sample T Test
-
-a)
-
-```{r}
-boxplot(StatGrades$Exam1, StatGrades$Exam2,
-        names = c("Exam 1", "Exam 2"),
-        main = "Exam Scores",
-        ylab = "Score")
-```
-
-**The median scores appear to be similar for both exams. Exam 1 scores appear to have more variability than exam 2 scores. There are two outliers in the exam 2 scores.**
-
-b)
-
-* $H_0: \mu_1 = \mu_2$
-* $H_A: \mu_1 \neq \mu_2$
-
-c)
-
-```{r}
-n2 = length(StatGrades$Exam2) # get sample size (n = 50)
-
-mean_exam2 = mean(StatGrades$Exam2) # compute sample mean
-sd_exam2 = sd(StatGrades$Exam2)
-
-# Compute standard error for two means
-se_two_means = sqrt(sd_exam1^2/n1 + sd_exam2^2/n2)
-T_stat_two_means = (mean_exam2 - mean_exam1) / se_two_means
-T_stat_two_means
-```
-
-d) 
-
-**Since we are doing a two-sided test, we need to multiply the p-value by 2.**
-
-```{r}
-2 * pt(T_stat_two_means, df = 50 - 1, lower.tail = F)
-```
-
-**Since our p-value is greater than 0.05, we will fail to reject the null hypothesis. We therefore do not have evidence that this year's students performed differently on the two exams.**
-
-e)
-
-* $H_0: \mu_1 = \mu_{final}$
-* $H_A: \mu_1 < \mu_{final}$
-
-**Note that we are doing a one-sided test, with the alternative being improvement on the final compared to the first exam.**
-
-```{r}
-n_final = length(StatGrades$Final) # get sample size (n = 50)
-
-mean_final = mean(StatGrades$Final) # compute sample mean
-sd_final = sd(StatGrades$Final)
-
-# Compute standard error for two means
-se_one_final = sqrt(sd_exam1^2/n1 + sd_final^2/n_final)
-T_stat_one_final = (mean_final - mean_exam1) / se_one_final
-T_stat_one_final
-```
-
-```{r}
-pt(T_stat_one_final, df = 50 - 1, lower.tail = F)
-```
-
-**Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that student scores improved on the final compared to the first exam.**
-
-# Question 4: Paired T Test
-
-a)
-
-**Let $D$ be the true difference between the exam 1 and exam 2 scores. We will perform the following two-sided test:**
-
-* $H_0: D = 0$
-* $H_A: D \neq 0$
-
-b)
-
-```{r}
-diff_exams = StatGrades$Exam2 - StatGrades$Exam1
-```
-
-c)
-
-```{r}
-n_diff = length(diff_exams)
-
-mean_diff = mean(diff_exams)
-se_diff = sd(diff_exams) / sqrt(n_diff)
-```
-
-d)
-
-```{r}
-T_stat_diff = mean_diff / se_diff
-```
-
-e)
-
-```{r}
-2 * pt(T_stat_diff, df = n_diff - 1, lower.tail = F)
-```
-
-**Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that this year's students performed differently on the two exams.**
+It seems that the sample mean wasn't very far from the null value of 80, which supports the lack of significance in our test.
 
 
-# *Part 2*  Permutations tests for one mean and diffrence between two means:
 
-## Test for the diffrence between two means with permuations:
+$\\$
 
 
-The same local statistics instructor believes that students perform the same on the first exam (`Exam1`) and the second exam (`Exam2`). Again, the data is available in the `StatsGrades` data set from the `Lock5Data` library. 
 
-1.) Create a null distribution and create its histogram.
 
-2.) Calculate the p-value
+# Exercise 2: Two Sample t-test
+
+The same local statistics instructor believes that students perform  differently on the two exams, `Exam1` , and  `Exam2`.  Again, the data is available in the `StatsGrades`  from the `Lock5Data` library.
 
 
 ```{r}
-n=50 
 library(SDS1000)
-combined_data <- c(StatGrades$Exam1, StatGrades$Exam2)
-null_dist <- do_it (10000) * {
-shuff_data <- shuffle(combined_data)
-shuff_grp1 <- shuff_data[1:50]
-shuff_grp2 <- shuff_data[51:100]
-mean(shuff_grp2) - mean(shuff_grp1)
-}
+library(Lock5Data)
+data(StatGrades)
 ```
 
+a. Is this research question could be answered with t-test for two independent samples, or, t- test for paired data? 
 
+  This is t- test for paired data.
+  
+  
 
-```{r}
-hist(null_dist)
+b. State the null and alternative hypotheses using symbols.
 
-obs_stat <- mean_exam1 -mean_exam2
-
-abline(v = obs_stat, col = "blue")
-```
-
-
-4.)  Calculate p-value 
-
-```{r}
-
-p_value <- pnull(obs_stat, null_dist, lower.tail = T) 
-p_value
-
-2*p_value 
-# 0.3072
-```
-
-
-## Test for one mean:
-
-**(Let go back to he the question of testing one mean)**.
-
-According to a local statistics instructor, the average score on his first exam of the semester (`Exam1`) is historically around 80%. The data is available in the `StatsGrades` data set from the `Lock5Data` library. let Create a bootstrap distribution with a mean of the hypothesised value
-
-1.) Calculate the mean of the data.
-
-```{r}
-mean_exam1 <-  mean(StatGrades$Exam1) # compute sample mean
-```
-
-2.) Subtract this mean from the data.
-
-```{r}
-subtract_mean <- StatGrades$Exam1- mean_exam1
-```
-
-3.) Add the hypothesized value to the data.
-
-```{r}
-
-modified_data <- subtract_mean + 80
-
-mean(modified_data )
-```
-
-4.)Now create a bootstrap distribution with the last modified data you have created in the previous step.
-
-
-```{r}
-n=50
-my_sample <- modified_data
-
-boot_sample <- sample(my_sample, n, replace = TRUE) #sample with replacement
-null_dist  <- do_it(10000) * {
-curr_boot <- sample(my_sample, n, replace = TRUE)
-mean(curr_boot)
-} 
-
-
-hist( null_dist )
-
-obs_stat <- mean_exam1
-
-abline(v = obs_stat, col = "blue")
-```
-
-5.) Calculate the p-value
-```{r}
-p_value <- pnull(obs_stat, null_dist, lower.tail = F ) 
-p_value
-
-
-```
-SDS1000/ClassMaterial/practice_sessions/practice_session_09/practice_09_answers.qmd at main · emeyers/SDS1000
-
-**It seems that the sample mean wasn't very far from the null value of 80, which supports the lack of significance in our test.**
-
-# Two Sample T Test
-
-a)  
-
-```{r}
-boxplot(StatGrades$Exam1, StatGrades$Exam2,
-        names = c("Exam 1", "Exam 2"),
-        main = "Exam Scores",
-        ylab = "Score")
-```
-
-**The median scores appear to be similar for both exams. Exam 1 scores appear to have more variability than exam 2 scores. There are two outliers in the exam 2 scores.**
-
-b)  
-
--   $H_0: \mu_1 = \mu_2$
--   $H_A: \mu_1 \neq \mu_2$
-
-```{r}
-n2 = length(StatGrades$Exam2) # get sample size (n = 50)
-
-mean_exam2 = mean(StatGrades$Exam2) # compute sample mean
-sd_exam2 = sd(StatGrades$Exam2)
-
-# Compute standard error for two means
-se_two_means = sqrt(sd_exam1^2/n1 + sd_exam2^2/n2)
-T_stat_two_means = (mean_exam2 - mean_exam1) / se_two_means
-T_stat_two_means
-```
-
-**Since we are doing a two-sided test, we need to multiply the p-value by 2.**
-
-```{r}
-2 * pt(T_stat_two_means, df = 50 - 1, lower.tail = F)
-```
-
-**Since our p-value is greater than 0.05, we will fail to reject the null hypothesis. We therefore do not have evidence that this year's students performed differently on the two exams.**
-
-c)  
-
--   $H_0: \mu_1 = \mu_{final}$
--   $H_A: \mu_1 < \mu_{final}$
-
-**Note that we are doing a one-sided test, with the alternative being improvement on the final compared to the first exam.**
-
-```{r}
-n_final = length(StatGrades$Final) # get sample size (n = 50)
-
-mean_final = mean(StatGrades$Final) # compute sample mean
-sd_final = sd(StatGrades$Final)
-
-# Compute standard error for two means
-se_one_final = sqrt(sd_exam1^2/n1 + sd_final^2/n_final)
-T_stat_one_final = (mean_final - mean_exam1) / se_one_final
-T_stat_one_final
-```
-
-```{r}
-pt(T_stat_one_final, df = 50 - 1, lower.tail = F)
-```
-
-**Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that student scores improved on the final compared to the first exam.**
-
-# Paired T Test
-
-**Let** $D$ be the true difference between the exam 1 and exam 2 scores. We will perform the following two-sided test:
+Let  $D$ be the true difference between the exam 1 and exam 2 scores. We will perform the following two-sided test:
 
 -   $H_0: D = 0$
 -   $H_A: D \neq 0$
 
+
+
+
+c. Calculate the statistic of interest. 
+
 ```{r}
-diff_exams = StatGrades$Exam2 - StatGrades$Exam1
-n_diff = length(diff_exams)
+# compute mean difference 
+exam1<- StatGrades$Exam1
+exam2<- StatGrades$Exam2
 
-mean_diff = mean(diff_exams)
-se_diff = sd(diff_exams) / sqrt(n_diff)
-
-T_stat_diff = mean_diff / se_diff
+diff_exams <- exam2 - exam1
+mean_diff <-  mean(diff_exams)
 ```
 
+
+
+
+d. Calculate the t-statistic
+
 ```{r}
-2 * pt(T_stat_diff, df = n_diff - 1, lower.tail = F)
+
+# find the sample size 
+n_diff <-  length(diff_exams)
+
+# find the SE of the difference 
+se_diff <-  sd(diff_exams) / sqrt(n_diff)
+
+# find the t-test statistics for the difference between the two exams
+t_stat_diff <-  mean_diff / se_diff
+
 ```
 
-**Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that this year's students performed differently on the two exams.**
 
 
-# *Part 2*  Permutations tests for one mean and diffrence between two means:
 
-## Test for the diffrence between two means with permuations:
+e.  Calculate the p-value of the test
 
-
-The same local statistics instructor believes that students perform the same on the first exam (`Exam1`) and the second exam (`Exam2`). Again, the data is available in the `StatsGrades` data set from the `Lock5Data` library. 
-
-1.) Create a null distribution and create its histogram.
-
-2.) Calculate the p-value
-
+Since we are doing a two-sided test, we need to multiply the p-value by 2.
 
 ```{r}
-n=50 
+2 * pt(t_stat_diff, df = 50 - 1, lower.tail = F)
+```
+
+
+
+f. State your conclusion.
+
+Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that students performed differently on the two exams.
+
+
+$\\$
+
+
+
+
+
+## Excersice 3 :  Mental Imaging and Muscle Fatigue
+
+A new study explores how actual muscle fatigue affects mental imaging. Participants were asked to either perform `Actual` pointing motions or to `Mental` imagining equivalent arm pointing motions. 
+
+
+Participants then developed muscle fatigue by holding a heavy weight out horizontally as long as they could. After becoming fatigued, they were asked to repeat the previous mental or actual motions. Eight participants were assigned to each group, and the time in seconds to complete the motions is given in data  `MentalMuscle`. Use a 5% significance level for the tests.
+
+
+*Note*: Data is approximated from this research paper.
+Demougeot, L., and Papaxanthis, C., *Muscle Fatigue Affects Mental Simulation of Action*, The Journal of Neuroscience, 2011;31(29): 10712–20. [Link](https://www.jneurosci.org/content/31/29/10712).
+
+```{r}
+
 library(SDS1000)
-combined_data <- c(StatGrades$Exam1, StatGrades$Exam2)
-null_dist <- do_it (10000) * {
-shuff_data <- shuffle(combined_data)
-shuff_grp1 <- shuff_data[1:50]
-shuff_grp2 <- shuff_data[51:100]
-mean(shuff_grp2) - mean(shuff_grp1)
-}
+library(Lock5Data)
+data(MentalMuscle)
+
+ # clean the data from "NA"
+mental_muscule <- na.omit(MentalMuscle)
+```
+ 
+
+
+1. Test to see whether there is a significant difference in mean times between mentally imaging doing the actions and actually doing the actions before any muscle fatigue (pre-fatigue).
+
+1.a Is this t-test for paired difference in means, or a t-test for two means for two independent samples. 
+
+* This is a t-test for difference in two means for two independent samples, the `Actual` motions vs the `Mental`  imagining`. 
+
+
+1.b State the null and alternative hypotheses using symbols.
+
+ * To compare the mean mental and actual times before fatigue we do a two-sample t-test for difference in means. Letting $\mu_M$ represent the mean time for someone mentally imaging the actions before any muscle fatigue and $\mu_A$ represent the mean time for someone actually performing the actions before any muscle fatigue, our hypotheses are:
+
+$$
+\begin{array}{ll}
+H_0: & \mu_M- \mu_A =0  \\
+H_a: & \mu_M - \mu_A \neq 0
+\end{array}
+$$
+1.c Calculate the statistic of interest. 
+
+```{r}
+pre_fatigue_mental <- mental_muscule$PreFatigue[mental_muscule$Action == "Mental"]
+pre_fatigue_mental
+mean(pre_fatigue_mental)
+
+pre_fatigue_actual <- mental_muscule$PreFatigue[mental_muscule$Action == "Actual"]
+pre_fatigue_actual
+mean( pre_fatigue_actual)
+
+obs_stat <- mean(pre_fatigue_mental) - mean( pre_fatigue_actual)
+obs_stat
+
+
 ```
 
+
+Using the `pre-fatigue` data values in each case, the relevant summary statistics for the mental pre-fatigue group is $\bar{x}_M= 7.3375$ with $s_M=1.22$ and $n_M=8$ .
+
+For the actual pre-fatigue group. $\bar{x}_A= 7.1625$.
+
+
+
+d. Calculate the t-statistic
+
+```{r}
+
+# find the samples sizes 
+n_m <-  length(pre_fatigue_mental)
+n_a <-  length(pre_fatigue_actual)
+
+
+# find the sd for he two samples of the difference 
+sd_m <-  sd(pre_fatigue_mental)
+sd_a <- sd(pre_fatigue_actual)
+
+
+# find the t-test statistics for the difference between the two exams
+t_stat <-  (obs_stat- 0) / sqrt (( sd_m^2/n_m )+ (sd_a^2/n_a))
+t_stat
+```
+
+
+$$
+t=\frac{\bar{x}_M-\bar{x}_A- \mu_0}{\sqrt{\frac{s_M^2}{n_M}+\frac{s_A^2}{n_A}}}=\frac{7.34-7.16- 0}{\sqrt{\frac{1.22^2}{8}+\frac{0.70^2}{8}}}=0.3520491
+$$
+e.  Calculate the p-value of the test
 
 
 ```{r}
-hist(null_dist)
-
-obs_stat <- mean_exam1 -mean_exam2
-
-abline(v = obs_stat, col = "blue")
+pv <- 2 *pt ( 0.3520491, df= 8-1,  lower.tail =F)
+pv
 ```
 
-4.)  Calculate p-value 
+
+
+This is a two-tail test, so the p -value is twice the area above 0.3520 in a t -distribution with $d f=7$. We see that the p -value is $0.73$. This is a very large p -value, so we do not reject $H_0$. There is no convincing evidence at all of a difference between the two groups before muscle fatigue.
+
+
+2. Test to see whether people who mentally perform the motions are faster, on average, at mentally imaging the actions post-fatigue than pre-fatigue.
+
+2.a Is this t-test for paired difference in means, or a t-test difference in two means for two independent samples. 
+
+**Summarized Answers***
+
+* Since the same 8 people under the the `mental` group  perform the movements twice, once before muscle fatigue and once after. To compare the pre-fatigue and post-fatigue means for those doing mental movements we use a
+paired difference in means test. 
+
+We compute the differences, **D = PostFatigue − PreFatigue**, using the data for the people doing the `mental imaging`.
+
+
+The summary statistics for the differences are $\bar{x}_D=-1.24$ with $s_D=1.54$ and $n_D=8$. The hypotheses are:
+
+$$
+\begin{array}{ll}
+H_0: & \mu_D=0 \\
+H_a: & \mu_D<0
+\end{array}
+$$
+
+
+Notice that if we had subtracted the other direction (PreFatigue - PostFatigue), the alternative would be in the other direction and all the differences would have the opposite sign, but the results would be identical. The test statistic is
+
+$$
+t=\frac{\bar{x}_D}{s_D / \sqrt{n_D}}=\frac{-1.24}{1.54 / \sqrt{8}}=-2.28
+$$
+
+
+This is a lower-tail test, so the p -value is the area below -2.28 in a t -distribution with $d f=7$. Using technology we see that the p-value is 0.0283 . At a $5 \%$ significance level, we reject $H_0$ and conclude that people are faster, on average, at mentally imaging physical motions when they have muscle fatigue.
+
+This is the new finding from the study: When people have muscle fatigue, they speed up their mental imaging - presumable because they just want to get done! It is likely that this makes the mental imagery less effective.
+
+$\\$
+
+
+# Extra Exercises 
+
+## Exercise 4: 
+
+How many more (or fewer) free throw attempts do the Warriors tend to get (on average) at home games compared to their road games. 
 
 ```{r}
-
-p_value <- pnull(obs_stat, null_dist, lower.tail = T) 
-p_value
-
-2*p_value 
-# 0.3072
+library(SDS1000)
+library(Lock5Data)
+data(GSWarriors2019)
 ```
+ 
+a. Find a 95% confidence interval for the difference in mean free throw attempts.
 
 
-## Test for one mean:
+**Summarized Answers**
+
+This question is asking about an estimate and confidence interval for the difference in means, $\mu_H-\mu_A$, where now $\mu$ is the mean number of free throw attempts in a game. Using the data in $F T A$ we find the following summary statistics
+
+\begin{tabular}{llrrr} 
+Variable & Location & Count & Mean & StDev \\
+FTA & Away & 41 & 20.17 & 7.86 \\
+& Home & 41 & 20.61 & 5.95
+\end{tabular}
+
+The sample sizes are both more than 30 and the $F T A$ amounts have no outliers, so we use a t-distribution with $41-1=40$ degrees of freedom to find $t^*=2.021$ for $95 \%$ confidence. We compute the confidence interval using
+
+$$
+\begin{aligned}
+\left(\bar{x}_H-\bar{x}_A\right) & \pm t^* \cdot \sqrt{\frac{s_H^2}{n_H}+\frac{s_A^2}{n_A}} \\
+(20.61-20.17) & \pm 2.021 \cdot \sqrt{\frac{5.95^2}{41}+\frac{7.86^2}{41}} \\
+0.44 & \pm 3.11 \\
+-2.67 & \text { to } 3.55
+\end{aligned}
+$$
+
+
+Based on these results we are $95 \%$ sure that the Warriors average between 2.67 fewer and 3.55 more free throw attempts (per game) when playing games at home versus games on the road.
+
+
+$\\$
+
+
+## Exercise 5: Test for one mean
 
 **(Let go back to he the question of testing one mean)**.
 
 According to a local statistics instructor, the average score on his first exam of the semester (`Exam1`) is historically around 80%. The data is available in the `StatsGrades` data set from the `Lock5Data` library. let Create a bootstrap distribution with a mean of the hypothesised value
 
-1.) Calculate the mean of the data.
+a. Calculate the mean of the data.
 
 ```{r}
 mean_exam1 <-  mean(StatGrades$Exam1) # compute sample mean
 ```
 
-2.) Subtract this mean from the data.
+b. Subtract this mean from the data.
 
 ```{r}
 subtract_mean <- StatGrades$Exam1- mean_exam1
 ```
 
-3.) Add the hypothesized value to the data.
+e. Add the hypothesized value to the data.
 
 ```{r}
 
@@ -584,7 +512,7 @@ modified_data <- subtract_mean + 80
 mean(modified_data )
 ```
 
-4.)Now create a bootstrap distribution with the last modified data you have created in the previous step.
+d. Now create a bootstrap distribution with the last modified data you have created in the previous step.
 
 
 ```{r}
@@ -605,10 +533,14 @@ obs_stat <- mean_exam1
 abline(v = obs_stat, col = "blue")
 ```
 
-5.) Calculate the p-value
+e. Calculate the p-value
 ```{r}
 p_value <- pnull(obs_stat, null_dist, lower.tail = F ) 
 p_value
 
-
 ```
+
+
+f. What is your conclusion? Is it the same as the Exercise 1 ? 
+
+Since our p-value is greater than 0.05, we will **fail to reject** the null hypothesis. We therefore do not have evidence that student's exam scores are significantly higher than 80. We have concluded the same conclusion as exercise 1. 
