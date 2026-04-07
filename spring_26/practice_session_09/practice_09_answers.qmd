@@ -12,12 +12,12 @@ editor_options:
 The **Central Limit Theorem** for Sample Means indicate that if the sample size $n$ is large, the distribution of sample means from a population with mean $\mu$ and standard deviation $\sigma$ is approximately normally distributed with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$.
 
 
-Unfortunately, we find **two difficulties** when trying to use this result in practice. **First**, we generally don't know the standard deviation $\sigma$, so we can just use the standard deviation from the sample, $s$, when estimating the standard error of the sample means.
+Unfortunately, we find two difficulties when trying to use this result in practice. First, we generally don't know the standard deviation $\sigma$, so we can just use the standard deviation from the sample, $s$, when estimating the standard error of the sample means.
 
 $$
 SE=\frac{s}{\sqrt{n}}
 $$
-** The Second** difficulty  is that when we use the   $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with **degrees of freedom**, df= n-1. 
+The Second difficulty  is that when we use the   $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with **degrees of freedom**, df= n-1. 
 
 $\\$
 
@@ -35,7 +35,7 @@ $$
 $$
 
 
-* **HT for a One Mean: T- Test**
+* **Hypothesis Test for a One Mean: T- Test**
 
 To test $H_{\mathrm{0}}: \mu=\mu_{\mathrm{0}}$ vs $H_a: \mu \neq \mu_{\mathrm{0}}$ (or a one-tail alternative) use the t -test statistic as follows: 
 
@@ -55,7 +55,7 @@ Consider two population approximately normally distributed or the two sample siz
 
 
 
- * **CI for Difference in Two Means**
+ * **Confidence Interval for Difference in Two Means**
  
 The confidence interval for the difference in two population means, $\mu_1-\mu_2$, is
 
@@ -68,7 +68,7 @@ where **$t^*$** is an endpoint chosen from a t-distribution with df = min ( $n_1
 
 
 
-* **HT for Difference in Two  Means (Two-Sample t-Test )**
+* **Hypothesis Test for Difference in Two  Means (Two-Sample t-Test )**
 
 To test $H_{\mathrm{O}}: \mu_1=\mu_2$ vs $H_a: \mu_1 \neq \mu_2$ (or one-tail test), we use two-sample t -statistic: 
 
@@ -97,7 +97,7 @@ $$
 where $t^*$ is a percentile from a t -distribution with $n_d-1$ degrees of freedom.
 
 
-* **HT for Difference in Means with Paired Data** 
+* **Hypothesis Test for Difference in Means with Paired Data** 
 
 To test $H_{\mathrm{o}}: \mu_d=\mathrm{o}$ vs $H_a: \mu_d \neq \mathrm{o}$ (or one-tail test) we use the t-test statistic:
 
@@ -128,8 +128,7 @@ data(StatGrades)
 ```
 
 
-
-a. First visualize the data using a boxplot and a histogram. Do you see any outliers?
+a. Visualize the data using a boxplot and a histogram. Do you see any outliers?
 
 ```{r}
 par(mfrow = c(1, 2))
@@ -147,7 +146,7 @@ There appears to be one outlier. We might want to investigate this score further
 
 
 
-b. State the null and alternative hypotheses using symbols.
+b. Step 1: State the null and alternative hypotheses using symbols.
 
 * $H_0: \mu = 80$
 * $H_A: \mu \neq 80$
@@ -155,7 +154,7 @@ b. State the null and alternative hypotheses using symbols.
 
 
 
-c. Calculate the sample statistic.
+c. Step 2: Calculate the sample statistic.
 
 ```{r}
 
@@ -167,7 +166,7 @@ mean_exam1 <-  mean(exam1)
 
 
 
-d. Calculate the t-test statistic
+d. Step 3: Calculate the t-test statistic
 
 ```{r}
 # first compute standard error
@@ -188,7 +187,7 @@ t_stat_exam1
 
 
 
-e. Calculate the p-value of the test 
+e. Step 4: Calculate the p-value of the test 
 
 ```{r}
 # df = 50 - 1 = 49
@@ -197,7 +196,7 @@ pt(t_stat_exam1, df = n1 - 1, lower.tail = F)
 
 
 
-f. State your conclusion.
+f. Step 5: State your conclusion.
 
 Since our p-value is greater than 0.05, we will **fail to reject** the null hypothesis. We therefore do not have evidence that student's exam scores are significantly higher than 80.
 
@@ -225,10 +224,9 @@ $\\$
 
 
 
-
 # Exercise 2: Two Sample t-test
 
-The same local statistics instructor believes that students perform  differently on the two exams, `Exam1` , and  `Exam2`.  Again, the data is available in the `StatsGrades`  from the `Lock5Data` library.
+The same local statistics instructor believes that students perform  differently on the two exams, `Exam1` , and  `Exam2`.  Again, the data is available in the `StatsGrades`  from the `Lock5Data` library. Visualize the data of `Exam2`.
 
 
 ```{r}
@@ -237,13 +235,28 @@ library(Lock5Data)
 data(StatGrades)
 ```
 
+```{r}
+par(mfrow = c(1, 2))
+exam2 <- StatGrades$Exam2
+
+diff_ex1_ex2 <- exam2-exam1
+boxplot(exam2-exam1,
+        main= " boxplt of Exam 2-Exam2",
+        ylab = "Exam 2- Exam1 Scores")
+hist(exam2, xlab = "Exam 2-Exam1  Scores")
+
+```
+
+
 a. Is this research question could be answered with t-test for two independent samples, or, t- test for paired data? 
 
-  This is t- test for paired data.
+
+This is t- test for paired data.
+  
   
   
 
-b. State the null and alternative hypotheses using symbols.
+b. Step1: State the null and alternative hypotheses using symbols.
 
 Let  $D$ be the true difference between the exam 1 and exam 2 scores. We will perform the following two-sided test:
 
@@ -253,7 +266,7 @@ Let  $D$ be the true difference between the exam 1 and exam 2 scores. We will pe
 
 
 
-c. Calculate the statistic of interest. 
+c. Step 2: Calculate the statistic of interest. 
 
 ```{r}
 # compute mean difference 
@@ -267,7 +280,7 @@ mean_diff <-  mean(diff_exams)
 
 
 
-d. Calculate the t-statistic
+d. Step 3: Calculate the t-statistic
 
 ```{r}
 
@@ -285,24 +298,22 @@ t_stat_diff <-  mean_diff / se_diff
 
 
 
-e.  Calculate the p-value of the test
+e. Step 4: Calculate the p-value of the test
 
 Since we are doing a two-sided test, we need to multiply the p-value by 2.
 
 ```{r}
-2 * pt(t_stat_diff, df = 50 - 1, lower.tail = F)
+pv  <- 2 * pt(t_stat_diff, df = 50 - 1, lower.tail = F)
 ```
 
 
 
-f. State your conclusion.
+f. Step 5: State your conclusion.
 
 Since our p-value is less than 0.05, we will reject the null hypothesis. We therefore have evidence that students performed differently on the two exams.
 
 
 $\\$
-
-
 
 
 
@@ -329,14 +340,14 @@ mental_muscule <- na.omit(MentalMuscle)
  
 
 
-1. Test to see whether there is a significant difference in mean times between mentally imaging doing the actions and actually doing the actions before any muscle fatigue (pre-fatigue).
+1. Test to see whether there is a significant difference in mean times between mentally imaging doing the actions and actually doing the actions before any muscle fatigue (pre-fatigue). 
 
-1.a Is this t-test for paired difference in means, or a t-test for two means for two independent samples. 
+a. Is this t-test for paired difference in means, or a t-test for two means for two independent samples. 
 
 * This is a t-test for difference in two means for two independent samples, the `Actual` motions vs the `Mental`  imagining`. 
 
 
-1.b State the null and alternative hypotheses using symbols.
+1.b Step 1:  State the null and alternative hypotheses.
 
  * To compare the mean mental and actual times before fatigue we do a two-sample t-test for difference in means. Letting $\mu_M$ represent the mean time for someone mentally imaging the actions before any muscle fatigue and $\mu_A$ represent the mean time for someone actually performing the actions before any muscle fatigue, our hypotheses are:
 
@@ -346,31 +357,24 @@ H_0: & \mu_M- \mu_A =0  \\
 H_a: & \mu_M - \mu_A \neq 0
 \end{array}
 $$
-1.c Calculate the statistic of interest. 
+
+
+
+1.c Step 2: Calculate the statistic of interest. 
 
 ```{r}
 pre_fatigue_mental <- mental_muscule$PreFatigue[mental_muscule$Action == "Mental"]
-pre_fatigue_mental
 mean(pre_fatigue_mental)
 
 pre_fatigue_actual <- mental_muscule$PreFatigue[mental_muscule$Action == "Actual"]
-pre_fatigue_actual
 mean( pre_fatigue_actual)
 
 obs_stat <- mean(pre_fatigue_mental) - mean( pre_fatigue_actual)
 obs_stat
-
-
 ```
 
 
-Using the `pre-fatigue` data values in each case, the relevant summary statistics for the mental pre-fatigue group is $\bar{x}_M= 7.3375$ with $s_M=1.22$ and $n_M=8$ .
-
-For the actual pre-fatigue group. $\bar{x}_A= 7.1625$.
-
-
-
-d. Calculate the t-statistic
+d. Step 3: Calculate the t-statistic
 
 ```{r}
 
@@ -385,15 +389,18 @@ sd_a <- sd(pre_fatigue_actual)
 
 
 # find the t-test statistics for the difference between the two exams
-t_stat <-  (obs_stat- 0) / sqrt (( sd_m^2/n_m )+ (sd_a^2/n_a))
-t_stat
+t_stat_pre_mental_actual <-  (obs_stat- 0) / sqrt (( sd_m^2/n_m )+ (sd_a^2/n_a))
+
 ```
 
 
 $$
-t=\frac{\bar{x}_M-\bar{x}_A- \mu_0}{\sqrt{\frac{s_M^2}{n_M}+\frac{s_A^2}{n_A}}}=\frac{7.34-7.16- 0}{\sqrt{\frac{1.22^2}{8}+\frac{0.70^2}{8}}}=0.3520491
+t=\frac  {(\bar{x}_M-\bar{x}_A
+)- \mu_0}{\sqrt{\frac{s_M^2}{n_M}+\frac{s_A^2}{n_A}}}=\frac{(7.34-7.16)- 0}{\sqrt{\frac{1.22^2}{8}+\frac{0.70^2}{8}}}=0.3520491
 $$
-e.  Calculate the p-value of the test
+
+
+e.  Step 4: Calculate the p-value of the test
 
 
 ```{r}
@@ -401,45 +408,126 @@ pv <- 2 *pt ( 0.3520491, df= 8-1,  lower.tail =F)
 pv
 ```
 
+This is a two-tail test, so the p -value is twice the area above 0.3520 in a t -distribution with $d f=7$. 
 
 
-This is a two-tail test, so the p -value is twice the area above 0.3520 in a t -distribution with $d f=7$. We see that the p -value is $0.73$. This is a very large p -value, so we do not reject $H_0$. There is no convincing evidence at all of a difference between the two groups before muscle fatigue.
+
+f- Step 5: Conclusion
+
+We see that the p -value is $0.73$. This is a very large p -value, so we do not reject $H_0$. There is no convincing evidence at all of a difference between the two groups before muscle fatigue.
 
 
-2. Test to see whether people who mentally perform the motions are faster, on average, at mentally imaging the actions post-fatigue than pre-fatigue.
+```{r}
+# Create sequence of t-values
+t_values <-  seq(-4,4, length.out = 1000)
+dt_values <-  dt(t_values, df = 7) # convert to density values
 
-2.a Is this t-test for paired difference in means, or a t-test difference in two means for two independent samples. 
+# plot and make line plot with type = "l"
+plot(t_values, dt_values, type = "l") 
+abline(v= c(t_stat_pre_mental_actual, - t_stat_pre_mental_actual) , col = "green2") # add vertical red line
+```
+
+
+
+2. Now test to see whether people who mentally perform the motions are faster, on average, at `mentally imaging` the actions `post-fatigue` than `pre-fatigue`.
+Is this t-test for paired difference in means, or a t-test difference in two means for two independent samples. 
+
 
 **Summarized Answers***
 
-* Since the same 8 people under the the `mental` group  perform the movements twice, once before muscle fatigue and once after. To compare the pre-fatigue and post-fatigue means for those doing mental movements we use a
-paired difference in means test. 
 
-We compute the differences, **D = PostFatigue − PreFatigue**, using the data for the people doing the `mental imaging`.
+* Since the same 8 people under the the `mental` group  perform the movements twice, once before muscle fatigue and once after. To compare the pre-fatigue and post-fatigue means for those doing mental movements we use a paired difference in means test. 
+
+We compute the differences, `D = PostFatigue − PreFatigue`, using the data for the people doing the `mental imaging`.
 
 
-The summary statistics for the differences are $\bar{x}_D=-1.24$ with $s_D=1.54$ and $n_D=8$. The hypotheses are:
+a. Step 1:  State the null and alternative hypotheses
+The hypotheses are:
 
 $$
 \begin{array}{ll}
-H_0: & \mu_D=0 \\
-H_a: & \mu_D<0
+H_0: & \mu_D = 0 \\
+H_a: & \mu_D < 0
 \end{array}
 $$
 
+Notice that if we had subtracted the other direction (PreFatigue - PostFatigue), the alternative would be in the other direction and all the differences would have the opposite sign, but the results would be identical. 
 
-Notice that if we had subtracted the other direction (PreFatigue - PostFatigue), the alternative would be in the other direction and all the differences would have the opposite sign, but the results would be identical. The test statistic is
+
+
+
+
+
+b. Step 2:  Calculated the observed statistic
+
+
+
+```{r}
+
+# compute mean difference 
+pre_fatigue_mental <- mental_muscule$PreFatigue[mental_muscule$Action == "Mental"]
+post_fatigue_mental <- mental_muscule$PostFatigue[mental_muscule$Action == "Mental"]
+
+diff_mental_post_pres <- post_fatigue_mental - pre_fatigue_mental
+diff_mental_post_pres
+obs_diff_mental <- mean(diff_mental_post_pres)
+obs_diff_mental  
+
+```
+
+
+
+c. Step 3:  Calculate the test statistic 
+
+```{r}
+
+n <- 8 
+# first find SD of the difference between the post and pre in mental data
+sd_diff_mental <- sd(diff_mental_post_pres )
+sd_diff_mental
+t_test_diff_mental <- obs_diff_mental / (sd_diff_mental/sqrt(n))
+t_test_diff_mental 
+```
+
 
 $$
-t=\frac{\bar{x}_D}{s_D / \sqrt{n_D}}=\frac{-1.24}{1.54 / \sqrt{8}}=-2.28
+t=\frac{\bar{x}_D}{s_D / \sqrt{n_D}}=\frac{-1.2375}{1.538958 / \sqrt{8}}=-2.2743
 $$
+d. Step 4: Find the p-value
 
 
-This is a lower-tail test, so the p -value is the area below -2.28 in a t -distribution with $d f=7$. Using technology we see that the p-value is 0.0283 . At a $5 \%$ significance level, we reject $H_0$ and conclude that people are faster, on average, at mentally imaging physical motions when they have muscle fatigue.
+This is a lower-tail test, so the p -value is the area below -2.28 in a t -distribution with $d f=7$. 
+We could find the p-value is 0.028 .
+
+```{r}
+
+pv <- pt ( -2.2743, df= 7,  lower.tail =T)
+pv
+```
+
+
+e. Step 5: Conclusion
+
+At a $5 \%$ significance level, we reject $H_0$ and conclude that people are faster, on average, at mentally imaging physical motions when they have muscle fatigue.
+
 
 This is the new finding from the study: When people have muscle fatigue, they speed up their mental imaging - presumable because they just want to get done! It is likely that this makes the mental imagery less effective.
 
+
+```{r}
+# Create sequence of t-values
+t_values <-  seq(-4,4, length.out = 1000)
+dt_values <-  dt(t_values, df = 7) # convert to density values
+
+# plot and make line plot with type = "l"
+plot(t_values, dt_values, type = "l") 
+abline(v= t_test_diff_mental , col = "yellow4") # add vertical red line
+```
+
+
 $\\$
+
+
 
 
 # Extra Exercises 
@@ -485,62 +573,3 @@ Based on these results we are $95 \%$ sure that the Warriors average between 2.6
 $\\$
 
 
-## Exercise 5: Test for one mean
-
-**(Let go back to he the question of testing one mean)**.
-
-According to a local statistics instructor, the average score on his first exam of the semester (`Exam1`) is historically around 80%. The data is available in the `StatsGrades` data set from the `Lock5Data` library. let Create a bootstrap distribution with a mean of the hypothesised value
-
-a. Calculate the mean of the data.
-
-```{r}
-mean_exam1 <-  mean(StatGrades$Exam1) # compute sample mean
-```
-
-b. Subtract this mean from the data.
-
-```{r}
-subtract_mean <- StatGrades$Exam1- mean_exam1
-```
-
-e. Add the hypothesized value to the data.
-
-```{r}
-
-modified_data <- subtract_mean + 80
-
-mean(modified_data )
-```
-
-d. Now create a bootstrap distribution with the last modified data you have created in the previous step.
-
-
-```{r}
-n=50
-my_sample <- modified_data
-
-boot_sample <- sample(my_sample, n, replace = TRUE) #sample with replacement
-null_dist  <- do_it(10000) * {
-curr_boot <- sample(my_sample, n, replace = TRUE)
-mean(curr_boot)
-} 
-
-
-hist( null_dist )
-
-obs_stat <- mean_exam1
-
-abline(v = obs_stat, col = "blue")
-```
-
-e. Calculate the p-value
-```{r}
-p_value <- pnull(obs_stat, null_dist, lower.tail = F ) 
-p_value
-
-```
-
-
-f. What is your conclusion? Is it the same as the Exercise 1 ? 
-
-Since our p-value is greater than 0.05, we will **fail to reject** the null hypothesis. We therefore do not have evidence that student's exam scores are significantly higher than 80. We have concluded the same conclusion as exercise 1. 
