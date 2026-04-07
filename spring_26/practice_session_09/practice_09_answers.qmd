@@ -545,17 +545,9 @@ data(GSWarriors2019)
 a. Find a 95% confidence interval for the difference in mean free throw attempts.
 
 
-**Summarized Answers**
+This question is asking about an estimate and confidence interval for the difference in means, $\mu_H-\mu_A$, where now $\mu$ is the mean number of free throw attempts in a game.
 
-This question is asking about an estimate and confidence interval for the difference in means, $\mu_H-\mu_A$, where now $\mu$ is the mean number of free throw attempts in a game. Using the data in $F T A$ we find the following summary statistics
-
-\begin{tabular}{llrrr} 
-Variable & Location & Count & Mean & StDev \\
-FTA & Away & 41 & 20.17 & 7.86 \\
-& Home & 41 & 20.61 & 5.95
-\end{tabular}
-
-The sample sizes are both more than 30 and the $F T A$ amounts have no outliers, so we use a t-distribution with $41-1=40$ degrees of freedom to find $t^*=2.021$ for $95 \%$ confidence. We compute the confidence interval using
+The sample sizes are both more than 30 and the $FTA$ amounts have no outliers, so we use a t-distribution with $41-1=40$ degrees of freedom to find $t^*=2.021$ for $95 \%$ confidence. We compute the confidence interval using
 
 $$
 \begin{aligned}
