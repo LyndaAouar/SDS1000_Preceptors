@@ -433,12 +433,7 @@ abline(v= c(t_stat_pre_mental_actual, - t_stat_pre_mental_actual) , col = "green
 Is this t-test for paired difference in means, or a t-test difference in two means for two independent samples. 
 
 
-**Summarized Answers***
-
-
 * Since the same 8 people under the the `mental` group  perform the movements twice, once before muscle fatigue and once after. To compare the pre-fatigue and post-fatigue means for those doing mental movements we use a paired difference in means test. 
-
-We compute the differences, `D = PostFatigue − PreFatigue`, using the data for the people doing the `mental imaging`.
 
 
 a. Step 1:  State the null and alternative hypotheses
