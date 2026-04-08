@@ -11,7 +11,6 @@ editor_options:
 
 The **Central Limit Theorem** for Sample Means indicate that if the sample size $n$ is large, the distribution of sample means from a population with mean $\mu$ and standard deviation $\sigma$ is approximately normally distributed with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$.
 
-
 Unfortunately, we find two difficulties when trying to use this result in practice. First, we generally don't know the standard deviation $\sigma$, so we can just use the standard deviation from the sample, $s$, when estimating the standard error of the sample means.
 
 $$
@@ -19,7 +18,7 @@ SE=\frac{s}{\sqrt{n}}
 $$
 The Second difficulty  is that when we use the   $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with **degrees of freedom**, df= n-1. 
 
-
+$\\$
 
 ## 1. Single Mean
 
@@ -89,7 +88,7 @@ To estimate the difference in means based on paired data, we first subtract to c
 The  confidence interval for the difference in means is given by:
 
 $$
-\text { Statistic } \pm t^* \cdot S E=\bar{x}_d \pm t^* \frac{s_d}{\sqrt{n_d}}
+\text { Statistic } \pm t^* \cdot S E=\bar{x}_{diff} \pm t^* \frac{s_{diff}}{\sqrt{n_{diff}}}
 $$
 
 where $t^*$ is a percentile from a t -distribution with $n_d-1$ degrees of freedom.
@@ -100,7 +99,7 @@ where $t^*$ is a percentile from a t -distribution with $n_d-1$ degrees of freed
 To test $H_{\mathrm{o}}: \mu_d=\mathrm{o}$ vs $H_a: \mu_d \neq \mathrm{o}$ (or one-tail test) we use the t-test statistic:
 
 $$
-t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\bar{x}_d-0}{s_d / \sqrt{n_d}}
+t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\bar{x}_{diff}-0}{s_{diff} / \sqrt{n_{diff}}}
 $$
 
 
@@ -256,10 +255,10 @@ This is t- test for paired data.
 
 b. Step1: State the null and alternative hypotheses using symbols.
 
-Let  $D$ be the true difference between the exam 1 and exam 2 scores. We will perform the following two-sided test:
+Let $ \mu_{diff} $ be the true mean difference between the exam 1 and exam 2 scores. We will perform the following two-sided test:
 
--   $H_0: D = 0$
--   $H_A: D \neq 0$
+-   $H_0: \mu_{diff} = 0$
+-   $H_A: \mu_{diff} \neq 0$
 
 
 
@@ -342,7 +341,7 @@ mental_muscule <- na.omit(MentalMuscle)
 
 a. Is this t-test for paired difference in means, or a t-test for two means for two independent samples. 
 
-* This is a t-test for difference in two means for two independent samples, the `Actual` motions vs the `Mental`  imagining`. 
+* This is a t-test for difference in two means for **two independent samples**, the `Actual` motions vs the `Mental`  imagining`. 
 
 
 1.b Step 1:  State the null and alternative hypotheses.
@@ -431,7 +430,7 @@ abline(v= c(t_stat_pre_mental_actual, - t_stat_pre_mental_actual) , col = "green
 Is this t-test for paired difference in means, or a t-test difference in two means for two independent samples. 
 
 
-* Since the same 8 people under the the `mental` group  perform the movements twice, once before muscle fatigue and once after. To compare the pre-fatigue and post-fatigue means for those doing mental movements we use a paired difference in means test. 
+* Since the same 8 people under the the `mental` group  perform the movements twice, once before muscle fatigue and once after. To compare the pre-fatigue and post-fatigue means for those doing mental movements we use a **paired difference in means test**. 
 
 
 a. Step 1:  State the null and alternative hypotheses
@@ -439,8 +438,8 @@ The hypotheses are:
 
 $$
 \begin{array}{ll}
-H_0: & \mu_D = 0 \\
-H_a: & \mu_D < 0
+H_0: & \mu_{diff} = 0 \\
+H_a: & \mu_{diff} < 0
 \end{array}
 $$
 
@@ -484,12 +483,12 @@ t_test_diff_mental
 
 
 $$
-t=\frac{\bar{x}_D}{s_D / \sqrt{n_D}}=\frac{-1.2375}{1.538958 / \sqrt{8}}=-2.2743
+t=\frac{\bar{x}_{diff}}{s_{diff} / \sqrt{n_{diff}}}=\frac{-1.2375}{1.538958 / \sqrt{8}}=-2.2743
 $$
 d. Step 4: Find the p-value
 
 
-This is a lower-tail test, so the p -value is the area below -2.28 in a t -distribution with $d f=7$. 
+This is a lower-tail test, so the p -value is the area below -2.28 in a t -distribution with $df=7$. 
 We could find the p-value is 0.028 .
 
 ```{r}
@@ -540,7 +539,18 @@ a. Find a 95% confidence interval for the difference in mean free throw attempts
 
 This question is asking about an estimate and confidence interval for the difference in means, $\mu_H-\mu_A$, where now $\mu$ is the mean number of free throw attempts in a game.
 
-The sample sizes are both more than 30 and the $FTA$ amounts have no outliers, so we use a t-distribution with $41-1=40$ degrees of freedom to find $t^*=2.021$ for $95 \%$ confidence. We compute the confidence interval using
+The sample sizes are both more than 30 and the $FTA$ amounts have no outliers, so we use a t-distribution with $df= 41-1=40$ degrees of freedom.
+
+To find $t^*$ for $95 \%$ confidence interval we use the function`ct` .
+
+```{r}
+t_cv <- ct(0.95, df= 40, side="both")
+t_cv
+```
+
+
+Thus, the confidence interval for the difference in mean free throw attempts at home games compared to their road games is: 
+
 
 $$
 \begin{aligned}
