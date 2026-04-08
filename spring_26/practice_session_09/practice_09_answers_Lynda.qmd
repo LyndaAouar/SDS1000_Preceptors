@@ -19,7 +19,7 @@ SE=\frac{s}{\sqrt{n}}
 $$
 The Second difficulty  is that when we use the   $SE=\frac{s}{\sqrt{n}}$  to estimate the standard error of the sampling distribution of the means, the distribution is no longer  normal. The result is known as a **t-distribution** with **degrees of freedom**, df= n-1. 
 
-$\\$
+
 
 ## 1. Single Mean
 
@@ -76,8 +76,6 @@ $$
 t=\frac{\text { Statistic }- \text { Null value }}{S E}=\frac{\left(\bar{x}_1-\bar{x}_2\right)-0}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
 $$
 we use a t -distribution to find the p -value  with df = min ( $n_1-1$, $n_2-1$ ). 
-
-
 
 $\\$
 
@@ -149,7 +147,7 @@ There appears to be one outlier. We might want to investigate this score further
 b. Step 1: State the null and alternative hypotheses using symbols.
 
 * $H_0: \mu = 80$
-* $H_A: \mu \neq 80$
+* $H_A: \mu > 80$
 
 
 
