@@ -1,0 +1,193 @@
+---
+title: "final_sp26"
+format: pdf
+editor: visual
+---
+
+# Question 1: (experiment and observational studies)
+
+At one time, a method called “gastric freezing” was used to treat people with peptic ulcers. An inflatable bladder was inserted down the esophagus and into the stomach, and then a cold liquid was pumped into the bladder.
+
+You can find the following notice on the Internet site of a major insurance company:
+
+"\[Our company\] does not cover gastric freezing (intragastric hypothermia) for chronic peptic ulcer disease. . . . Gastric freezing for chronic peptic ulcer disease is a non-surgical treatment which was popular about 20 years ago but now is seldom performed. It has been abandoned due to a high complication rate, only temporary improvement experienced by patients, and a lack of effectiveness when tested by double-blind, controlled clinical trials."
+
+What did that “controlled clinical trial” (experiment) probably look like?
+
+a)  What was the factor in this experiment?
+b)  What was the response variable?
+c)  What were the treatments?
+d)  How did researchers decide which subjects received which treatment?
+e)  Were the results statistically significant?
+
+**Answers**
+
+a)  The factor was type of treatment for peptic ulcer.
+
+b)  The response variable could be a measure of relief from gastric ulcer pain or an evaluation by a physician of the state of the disease.
+
+c)  Treatments would be gastric freezing and some alternative control treatment.
+
+d)  Treatments should be assigned randomly.
+
+e)  No. The Web site reports “lack of effectiveness,” indicating that no large differences in patient healing were noted.
+
+# Question 2:
+
+Think some more about the 95% confidence interval originally created for the proportion of U.S. adults who believe that scientists disagree about whether global warming exists. 1. If the researchers wanted to be 98% confident, would their confidence interval need to be wider or narrower?
+
+2.  The study’s margin of error was about 3%. If the researchers wanted to reduce it to 2%, would their level of confidence be higher or lower?
+
+3.  If the researchers had polled more people, would the interval’s margin of error have been larger or smaller?
+
+**Answers**:
+
+1.  Wider.
+2.  Lower.
+3.  Smaller.
+
+# Question 3:
+
+1 . A research team wants to know if aspirin helps to thin blood. The null hypothesis says that it doesn’t. They test 12 patients, observe the proportion with thinner blood, and get a P-value of 0.32. They proclaim that aspirin doesn’t work. What would you say?
+
+2.  An allergy drug has been tested and found to give relief to 75% of the patients in a large clinical trial. Now the scientists want to see if the new, improved version works even better. What would the null hypothesis be?
+
+3.  The new drug is tested and the P-value is 0.0001. What would you conclude about the new drug?
+
+**Answers**:
+
+1.  You can’t conclude that the null hypothesis is true. You can conclude only that the experiment was unable to reject the null hypothesis. They were unable, on the basis of 12 patients, to show that aspirin was effective.
+
+2.  The null hypothesis is H0: p = 0.75.
+
+3.  With a P-value of 0.0001, this is very strong evidence against the null hypothesis. We can reject H0 and conclude that the improved version of the drug.
+
+# Question 4:
+
+Every 10 years, the United States takes a census. The census tries to count every resident. There have been two forms, known as the “short form,” answered by most people, and the “long form,” slogged through by about one in six or seven households chosen at random. (For the 2010 Census, the long form was replaced by the American Community Survey.) According to the Census Bureau (www.census.gov), “. . . each estimate based on the long form responses has an associated confidence interval.”
+
+1.  Why does the Census Bureau need a confidence interval for long-form information but not for the questions that appear on both the long and short forms?
+
+2.  If they want to find a confidence intervals for the mean age of residents. Which test must the Census Bureau use, t-model or z- model?
+
+The Census Bureau goes on to say, “These confidence intervals are wider . . . for geographic areas with smaller populations and for characteristics that occur less frequently in the area being examined (such as the proportion of people in poverty in a middle-income neighborhood).”
+
+3.  Why is this so? For example, why should a confidence interval for the mean amount families spend monthly on housing be wider for a sparsely populated area of farms in the Midwest than for a densely populated area of an urban center? How does the formula show this will happen?
+
+To deal with this problem, the Census Bureau reports long-form data only for “. . . geographic areas from which about two hundred or more long forms were completed—which are large enough to produce good quality estimates. If smaller weighting areas had been used, the confidence intervals around the estimates would have been significantly wider, rendering many estimates less useful. . . .”
+
+4.  Suppose the Census Bureau decided to report on areas from which only 50 long forms were completed. What effect would that have on a 95% confidence interval for, say, the mean cost of housing? Specifically, which values used in the formula for the margin of error would change? Which would change a lot and which would change only slightly?
+
+5.  Approximately how much wider would that confidence interval based on 50 forms be than the one based on 200 forms?
+
+6.  Suppose we use long-form data to make 95% confidence intervals for the mean age of residents for each of 100 of the Census-defined areas. How many of these 100 intervals should we expect will fail to include the true mean age (as determined from the complete short-form Census data)?
+
+**Answers**:
+
+1.  Questions on the short form are answered by everyone in the population. This is a census, so means or proportions are the true population values. The long forms are given just to a sample of the population. When we estimate parameters from a sample, we use a confidence interval to take sample-to-sample variability into account.
+
+2.  They don’t know the population standard deviation, so they must use the sample standard deviation as an estimate. The additional uncertainty is taken into account by t-models. Another plausible answers is : since this is census, we can get the standard deviation from the "short forms"
+
+3.  The margin of error for a confidence interval for a mean depends, in part, on the standard error. Since n is in the denominator, smaller sample sizes lead to larger SEs and correspondingly wider intervals. Long forms returned by one in every six or seven households in a less populous area will be a smaller sample.
+
+4.  The critical values for t with fewer degrees of freedom would be slightly larger. The 1n part of the standard error changes a lot, making the SE much larger. Both would increase the margin of error.
+
+5.  The smaller sample is one fourth as large, so the confidence interval would be roughly twice as wide.
+
+6.  We expect 95% of such intervals to cover the true value, so we would expect about 5 of the 100 intervals to miss.
+
+# Question 5:
+
+1.  An experiment to test the fairness of a roulette wheel gives a z-score of 0.62. What would you conclude?
+
+2.  A bank wondered if it could get more customers to make payments on delinquent balances by sending them a video in an email urging them to set up a payment plan. Well, the bank just got back the results on their test of this strategy. A 90% confidence interval for the success rate is (0.29, 0.45). Their old send-a-letter method had worked 30% of the time. Can you reject the null hypothesis that the proportion is still 30% at a = 0.05? Explain.
+
+3.  Given the confidence interval the bank found in their trial of emails, what would you recommend that they do? Should they scrap the videos strategy?
+
+4.  Remember the bank that’s sending out videos to try to get customers to make payments on delinquent loans? It is looking for evidence that the costlier videos strategy produces a higher success rate than the letters it has been sending. Explain what a Type I error is in this context and what the consequences would be to the bank.
+
+5.  What’s a Type II error in the bank experiment context, and what would the consequences be?
+
+**Answers**:
+
+1.  With a z-score of 0.62, you can’t reject the null hypothesis. The experiment shows no evidence that the wheel is not fair.
+
+2.  At a = 0.05, you can’t reject the null hypothesis because 0.30 is contained in the 90% confidence interval—it’s plausible that sending the videos in the emails is no more effective than just sending letters.
+
+3.  The confidence interval is from 29% to 45%. The videos strategy is more expensive and may not be worth it. We can’t distinguish the success rate from 30% given the results of this experiment, but 45% would represent a large improvement. The bank should consider another trial, increasing their sample size to get a narrower confidence interval.
+
+4.  A Type I error would mean deciding that the videos success rate is higher than 30% when it really isn’t. They would adopt a more expensive method for collecting payments that’s no better than the less expensive strategy.
+
+5.  A Type II error would mean deciding that there’s not enough evidence to say that the videos strategy works when in fact it does. The bank would fail to discover an effective method for increasing their revenue from delinquent accounts.
+
+# Question 6:
+
+A public broadcasting station plans to launch a special appeal for additional contributions from current members. Unsure of the most effective way to contact people, they run an experiment. They randomly select two groups of current members. They send the same request for donations to everyone, but it goes to one group by e-mail and to the other group by regular mail. The station was successful in getting contributions from 26% of the members they e-mailed but only from 15% of those who received the request by regular mail.
+
+A 90% confidence interval estimated the difference in donation rates to be $11 \% \pm 7 \%$.
+
+1.  Interpret the confidence interval in this context.
+2.  Based on this confidence interval, what conclusion would we reach if we tested the hypothesis that there’s no difference in the response rates to the two methods of fund-raising? Explain.
+
+**Answers**:
+
+1.  We’re 90% confident that if members are contacted by e-mail, the donation rate will be between 4 and 18 percentage points higher than if they received regular mail.
+
+2.  Since a difference of 0 is not in the confidence interval, we’d reject the null hypothesis. There is evidence that more members will donate if contacted by e-mail.
+
+# Question 7:
+
+Carpal tunnel syndrome (CTS) causes pain and tingling in the hand. It can be bad enough to keep sufferers awake at night and restrict their daily activities. Researchers studied the effectiveness of two alternative surgical treatments for CTS (Mackenzie, Hainer, and Wheatley, Annals of Plastic Surgery, 2000).
+
+Patients were randomly assigned to have endoscopic or open-incision surgery. Four weeks later, the endoscopic surgery patients demonstrated a mean pinch strength of 9.1 kg compared to 7.6 kg for the open-incision patients.
+
+1.  Why is the randomization of the patients into the two treatments important?
+
+2.  A 95% confidence interval for the difference in mean strength is about (0.04 kg, 2.96 kg). Explain what this interval means.
+
+3.  Why might we want to examine such a confidence interval in deciding between these two surgical procedures?
+
+4.  Why might you want to see the data before trusting the confidence interval?
+
+**Answers**:
+
+1.  Randomization should balance unknown sources of variability in the two groups of patients and helps us believe the two groups are independent.
+
+2.  We can be 95% confident that after 4 weeks endoscopic surgery patients will have a mean pinch strength between 0.04 kg and 2.96 kg higher than open-incision patients.
+
+3.  The lower bound of this interval is close to 0, so the difference may not be great enough that patients could actually notice the difference. We may want to consider other issues such as cost or risk in making a recommendation about the two surgical procedures.
+
+4 . Without data, we can’t check the Nearly Normal Condition.
+
+## Question 8:
+
+Think about each of the situations described below.
+
+-   Would you use a two-sample t or paired t method (or neither)? Why? or Why not?
+-   Would you perform a hypothesis test or find a confidence interval?
+
+1.  Random samples of 50 men and 50 women are asked to imagine buying a birthday present for their best friend. We want to estimate the difference in how much they are willing to spend.
+
+2.  Mothers of twins were surveyed and asked how often in the past month strangers had asked whether the twins were identical.
+
+3.  Are parents equally strict with boys and girls? In a random sample of families, researchers asked a brother and sister from each family to rate how strict their parents were.
+
+4.  Forty-eight overweight subjects are randomly assigned to either aerobic or stretching exercise programs. They are weighed at the beginning and at the end of the experiment to see how much weight they lost.
+
+4.a We want to estimate the mean amount of weight lost by those doing aerobic exercise. 4.b We want to know which program is more effective at reducing weight.
+
+5.  Couples at a dance club were separated and each person was asked to rate the band. Do men or women like this band more?
+
+**Answers**:
+
+1- These are independent groups sampled at random, so use a two-sample t confidence interval to estimate the size of the difference.
+
+2.  There is only one sample. Use a one-sample t-interval.
+
+3.  A brother and sister from the same family represent a matched pair. The question calls for a paired t-test.
+
+4.  
+
+    a)  A before-and-after study calls for paired t methods. To estimate the loss, find a confidence interval for the before–after differences. 4.b) The two treatment groups were assigned randomly, so they are independent. Use a two sample t-test to assess whether the mean weight losses differ.
+
+5.  Sometimes it just isn’t clear. Most likely, couples would discuss the band or even decide to go to the club because they both like a particular band. If we think that’s likely, then these data are paired. But maybe not. If we asked them their opinions of, say, the decor or furnishings at the club, the fact that they were couples might not affect the independence of their answers.
