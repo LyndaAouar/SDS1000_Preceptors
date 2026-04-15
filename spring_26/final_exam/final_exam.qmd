@@ -186,8 +186,54 @@ Think about each of the situations described below.
 
 3.  A brother and sister from the same family represent a matched pair. The question calls for a paired t-test.
 
-4.  
-
-    a)  A before-and-after study calls for paired t methods. To estimate the loss, find a confidence interval for the before–after differences. 4.b) The two treatment groups were assigned randomly, so they are independent. Use a two sample t-test to assess whether the mean weight losses differ.
+4.  4.a A before-and-after study calls for paired t methods. To estimate the loss, find a confidence interval for the before–after differences. 4.b The two treatment groups were assigned randomly, so they are independent. Use a two sample t-test to assess whether the mean weight losses differ.
 
 5.  Sometimes it just isn’t clear. Most likely, couples would discuss the band or even decide to go to the club because they both like a particular band. If we think that’s likely, then these data are paired. But maybe not. If we asked them their opinions of, say, the decor or furnishings at the club, the fact that they were couples might not affect the independence of their answers.
+
+## Question 9:
+
+Match each research scenario with the appropriate statistical test/ analysis:
+
+a.  Chi- square test of goodness of fit.
+b.  T test for difference between two means.
+c.  A new prep class was designed to improve SAT test scores. Five students were selected at random. Their scores on two practice exams were recorded, one before the class and one after. Are the scores, higher after the class?
+
+1.Scenario 1 : A meteorologist wants to know whether the storms type ( level 1, level 2, level 3) are the same within the East and the West of the United States.
+
+2.  Scenario 2: Rock-paper-scissors is a hand game played by two or more people where players choose to sign either rock, paper, or scissors with their hands. For your statistics class project, you want to evaluate whether players choose between these three options randomly, or if certain options are favored above others. You ask two friends to play rock-paper-scissors and count the times each option is played.
+
+3.  Scenario 3: A new prep class was designed to improve SAT test scores. Five students were selected at random. Their scores on two practice exams were recorded, one before the class and one after. Are the scores, higher after the class?
+
+## Question 10 :
+
+The Environmental Protection Agency is examining the relationship between the ozone level (in parts per million) and the population (in millions) of 17 U.S. cities. Assuming that the assumptions for inference is met, the following is part of the regression analysis output. Test the hypothesis that there is a relationship between ozone level and population. Find the p-value and state your decision. Use alpha = 0.05 for your significance level. (Dependent variable is ozone)
+
+![](ozone_reg.png){width="50%"}
+
+1.  Write the hypotheses.
+2.  Calculate the t-test statistics.
+3.  write the code to calculate the p-value. Approximate the p-value :
+
+3.a The p-value is less than 0.01. Thus, there is statistically significant linear relationship between ozone level and population.
+
+3.b The p-value is greater than 0.1. Thus, there is no statistically significant linear relationship between ozone level and population.
+
+3.c The p-value is between 0.02 and 0.05. Thus, there is statistically significant linear relationship between ozone level and population 
+
+**Answer** 3.a
+
+```{r}
+pv <- 2* pt( 6, df=15, lower.tail= F)
+
+```
+
+## Question 11 :
+
+The standardized estimated regression slope will have a distribution of:
+
+1.  A normal distribution with (n - 1) degrees of freedom.
+2.  A t-distribution with (n - 1) degrees of freedom.
+3.  A t-distribution with (n - 2) degrees of freedom.
+4.  A normal distribution with (n - 2) degrees of freedom.
+
+**Answer** 3.
